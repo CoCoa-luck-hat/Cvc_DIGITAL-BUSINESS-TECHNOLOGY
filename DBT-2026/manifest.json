@@ -9,12 +9,12 @@
   "theme_color": "#5f2d8c",
   "icons": [
     {
-      "src": "02_design/DBTLOGO.png",
+      "src": "02_design/DBTLOGO.webp",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "02_design/DBTLOGO.png",
+      "src": "02_design/DBTLOGO.webp",
       "sizes": "512x512",
       "type": "image/png"
     }

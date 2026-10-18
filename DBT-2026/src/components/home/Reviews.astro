@@ -1,0 +1,316 @@
+---
+// Student Reviews Section - Modern Dual Marquee
+const dbtRow1 = [
+    {
+        name: "นายเจษฎาพงษ์ พิจารณ์ (พี่เจษ)",
+        class: "ระดับชั้น ชธด.2/2",
+        img: "/03_photo/3.1_review/เจษ.webp",
+        quote: "เนื้อหาที่เรียนไม่เก่าเลย อาจารย์คอยอัปเดต ทำให้ตามทันเทรนด์ธุรกิจและเทคโนโลยีใหม่ ๆ ตลอดเวลา พร้อมลุยงานจริงได้ทันทีครับ",
+        badge: "เทรนด์ธุรกิจทันสมัย",
+        icon: "fa-chart-line"
+    },
+    {
+        name: "นางสาวอริสรา อุ่ยแม (พี่จีจี้)",
+        class: "ระดับชั้น ชธด.2/2",
+        img: "/03_photo/3.1_review/จีจี้.webp",
+        quote: "อาจารย์ใจดีมากเลย เวลามีข้อสงสัยถามได้ตลอด อาจารย์ช่วยเต็มที่ แนะนำเครื่องมือการตลาดดิจิทัลที่ใช้งานได้จริงในธุรกิจ",
+        badge: "อาจารย์ดูแลใกล้ชิด",
+        icon: "fa-user-graduate"
+    },
+    {
+        name: "นายไกรวิชญ์ ลามือ (พี่วิชญ์)",
+        class: "ระดับชั้น ชธด.2/2",
+        img: "/03_photo/3.1_review/วิชญ์.webp",
+        quote: "ลงมือปฏิบัติจริงไม่ใช่แค่ท่องจำ ได้ทำโปรเจกต์และแคมเปญจริงเยอะมาก เหมือนได้ลองทำงานจริงก่อนเรียนจบ ได้ทักษะติดตัวชัวร์",
+        badge: "เน้นปฏิบัติจริง",
+        icon: "fa-laptop-code"
+    },
+    {
+        name: "นางสาวปรายมาศ สามาพัด (พี่ปราย)",
+        class: "ระดับชั้น ชธด.2/1",
+        img: "/03_photo/3.1_review/ปราย.webp",
+        quote: "บรรยากาศในสาขาอบอุ่นและเป็นกันเองมากค่ะ รุ่นพี่คอยช่วย รุ่นน้องก็ปรึกษาได้ตลอด อาจารย์ทุกคนพร้อมซัพพอร์ตให้เติบโต",
+        badge: "สังคมอบอุ่น",
+        icon: "fa-hands-helping"
+    }
+];
+
+const dbtRow2 = [
+    {
+        name: "นายศิรยุทธ อ่วยยื่อ (พี่เวียร์)",
+        class: "ระดับชั้น ชธด.2/1",
+        img: "/03_photo/3.1_review/เวียร์.webp",
+        quote: "คุณครูสอนสนุก ถ่ายทอดเข้าใจง่าย บรรยากาศการเรียนเป็นกันเอง ทำให้ทุกคาบเรียนไม่น่าเบื่อและได้ฝึกคิดวิเคราะห์แบบนักธุรกิจ",
+        badge: "คุณครูสอนสนุก",
+        icon: "fa-smile-beam"
+    },
+    {
+        name: "นางสาวนันท์นภัส สุรินแก้ว (พี่กิ๊ฟ)",
+        class: "ระดับชั้น ชธด.2/1",
+        img: "/03_photo/3.1_review/กิ๊ฟ.webp",
+        quote: "ในห้องเรียนไม่กดดันเลยค่ะ ทุกคนช่วยกันเรียน ช่วยกันระดมไอเดียทำสื่อ อาจารย์สอนเข้าใจง่าย เรียนสนุกและได้ผลงานจริง",
+        badge: "เรียนสนุก ไม่เครียด",
+        icon: "fa-lightbulb"
+    },
+    {
+        name: "นายมฤคทายวัน แซ่ลิ้ม (พี่มอส)",
+        class: "ระดับชั้น ชธด.2/1",
+        img: "/03_photo/3.1_review/มอส.webp",
+        quote: "เรียนที่นี่ได้ไอเดีย กลยุทธ์ E-Commerce และเครื่องมือในการเริ่มต้นธุรกิจออนไลน์ของตัวเอง สามารถสร้างรายได้จริงระหว่างเรียน",
+        badge: "สร้างธุรกิจจริง",
+        icon: "fa-store"
+    },
+    {
+        name: "นายสรวิศ ประวัติ (พี่อาร์ม)",
+        class: "ระดับชั้น ชธด.2/1",
+        img: "/03_photo/3.1_review/อาร์ม.webp",
+        quote: "นอกจากเรียนในห้องแล้ว ยังมีกิจกรรมแน่นมาก ทั้งเวิร์กช็อป แข่งขันระดับชาติ และงานสาขา ได้ทั้งความสนุกและมิตรภาพที่ยอดเยี่ยม",
+        badge: "กิจกรรมแน่น ทักษะแน่น",
+        icon: "fa-trophy"
+    }
+];
+
+// Duplicate each row 4 times to ensure seamless infinite looping across ultra-wide monitors
+const track1Items = [...dbtRow1, ...dbtRow1, ...dbtRow1, ...dbtRow1];
+const track2Items = [...dbtRow2, ...dbtRow2, ...dbtRow2, ...dbtRow2];
+---
+
+<style is:global>
+/* ===================================================
+   DBT Dual Marquee Styling
+   =================================================== */
+.marquee-viewport {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 0.75rem 0;
+}
+
+.marquee-track-wrapper {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    user-select: none;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.marquee-track {
+    display: flex;
+    flex-shrink: 0;
+    gap: 1.5rem;
+    will-change: transform;
+}
+
+.marquee-track-left {
+    animation: dbtMarqueeScrollLeft 45s linear infinite;
+}
+
+.marquee-track-right {
+    animation: dbtMarqueeScrollRight 50s linear infinite;
+}
+
+/* Hover-to-Pause for easy reading */
+.marquee-track-wrapper:hover .marquee-track {
+    animation-play-state: paused !important;
+}
+
+@keyframes dbtMarqueeScrollLeft {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+@keyframes dbtMarqueeScrollRight {
+    0% {
+        transform: translate3d(-50%, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/* Card Visual Aesthetics */
+.dbt-review-card {
+    width: 350px;
+    flex-shrink: 0;
+    background: #ffffff;
+    border: 1px solid rgba(95, 45, 140, 0.12);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    position: relative;
+    box-shadow: 0 4px 20px -4px rgba(95, 45, 140, 0.06), 0 2px 6px -2px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media (min-width: 640px) {
+    .dbt-review-card {
+        width: 410px;
+        padding: 1.75rem;
+    }
+}
+
+.dbt-review-card:hover {
+    transform: translateY(-5px) scale(1.015);
+    box-shadow: 0 20px 35px -8px rgba(95, 45, 140, 0.18), 0 10px 15px -4px rgba(0, 0, 0, 0.04);
+    border-color: rgba(95, 45, 140, 0.35);
+}
+
+.dbt-avatar-ring {
+    position: relative;
+    border-radius: 9999px;
+    padding: 3px;
+    background: linear-gradient(135deg, #7c3aed 0%, #5f2d8c 50%, #8b5cf6 100%);
+    box-shadow: 0 4px 12px rgba(95, 45, 140, 0.25);
+    flex-shrink: 0;
+}
+
+.dbt-avatar-img {
+    width: 3.75rem;
+    height: 3.75rem;
+    border-radius: 9999px;
+    object-fit: cover;
+    border: 2px solid #ffffff;
+    display: block;
+}
+
+.dbt-quote-watermark {
+    position: absolute;
+    right: 1.25rem;
+    top: 1.25rem;
+    color: rgba(95, 45, 140, 0.07);
+    font-size: 3.5rem;
+    line-height: 1;
+    pointer-events: none;
+    transition: color 0.3s ease;
+}
+
+.dbt-review-card:hover .dbt-quote-watermark {
+    color: rgba(95, 45, 140, 0.14);
+}
+</style>
+
+<!-- Student Reviews Section (เสียงจากรุ่นพี่ DBT) -->
+<section id="student-reviews" class="py-20 md:py-28 bg-[#fafafc] relative z-20 overflow-hidden border-t border-gray-100">
+    <!-- Ambient Violet Glow in background -->
+    <div class="absolute -left-20 top-1/2 -translate-y-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -right-20 top-1/3 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
+                เสียงจากรุ่นพี่ <span class="text-primary neon-glow">DBT CVC</span>
+            </h2>
+            <p class="text-gray-600 text-sm md:text-base leading-relaxed">
+                ฟังประสบการณ์จริง บรรยากาศการเรียน และความประทับใจจากรุ่นพี่สาขาวิชาเทคโนโลยีธุรกิจดิจิทัล
+            </p>
+            <div class="w-16 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto rounded-full mt-4"></div>
+        </div>
+    </div>
+
+    <!-- Dual Marquee Container -->
+    <div class="marquee-viewport space-y-6">
+        
+        <!-- Track 1: Scrolling Left -->
+        <div class="marquee-track-wrapper">
+            <div class="marquee-track marquee-track-left">
+                {track1Items.map((rev) => (
+                    <div class="dbt-review-card group">
+                        <i class="fas fa-quote-right dbt-quote-watermark"></i>
+                        
+                        <div>
+                            <!-- Student Profile Header -->
+                            <div class="flex items-center gap-3.5 mb-4 relative z-10">
+                                <div class="dbt-avatar-ring group-hover:scale-105 transition-transform duration-300">
+                                    <img src={rev.img} alt={rev.name} class="dbt-avatar-img" loading="lazy" />
+                                </div>
+                                <div class="min-w-0 pr-8" style="padding-left: 8px;">
+                                    <span class="inline-flex items-center gap-1.5 text-[10px] font-bold px-2 py-0.5 rounded-full bg-violet-50 text-primary border border-violet-200/80 mb-1">
+                                        <i class={`fas ${rev.icon} text-[9px]`}></i>
+                                        {rev.badge}
+                                    </span>
+                                    <h3 class="text-sm sm:text-base font-bold text-gray-900 truncate leading-snug group-hover:text-primary transition-colors">
+                                        {rev.name}
+                                    </h3>
+                                    <p class="text-[11px] text-gray-500 font-medium truncate">
+                                        {rev.class}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- 5 Stars Rating -->
+                            <div class="flex items-center gap-1 text-amber-400 text-xs mb-3">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-[11px] font-bold text-gray-500 ml-1.5">5.0</span>
+                            </div>
+
+                            <!-- Quote Text -->
+                            <p class="text-xs sm:text-sm text-gray-700 leading-relaxed font-normal">
+                                &ldquo;{rev.quote}&rdquo;
+                            </p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+
+        <!-- Track 2: Scrolling Right -->
+        <div class="marquee-track-wrapper">
+            <div class="marquee-track marquee-track-right">
+                {track2Items.map((rev) => (
+                    <div class="dbt-review-card group">
+                        <i class="fas fa-quote-right dbt-quote-watermark"></i>
+                        
+                        <div>
+                            <!-- Student Profile Header -->
+                            <div class="flex items-center gap-3.5 mb-4 relative z-10">
+                                <div class="dbt-avatar-ring group-hover:scale-105 transition-transform duration-300">
+                                    <img src={rev.img} alt={rev.name} class="dbt-avatar-img" loading="lazy" />
+                                </div>
+                                <div class="min-w-0 pr-8" style="padding-left: 8px;">
+                                    <span class="inline-flex items-center gap-1.5 text-[10px] font-bold px-2 py-0.5 rounded-full bg-violet-50 text-primary border border-violet-200/80 mb-1">
+                                        <i class={`fas ${rev.icon} text-[9px]`}></i>
+                                        {rev.badge}
+                                    </span>
+                                    <h3 class="text-sm sm:text-base font-bold text-gray-900 truncate leading-snug group-hover:text-primary transition-colors">
+                                        {rev.name}
+                                    </h3>
+                                    <p class="text-[11px] text-gray-500 font-medium truncate">
+                                        {rev.class}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- 5 Stars Rating -->
+                            <div class="flex items-center gap-1 text-amber-400 text-xs mb-3">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-[11px] font-bold text-gray-500 ml-1.5">5.0</span>
+                            </div>
+
+                            <!-- Quote Text -->
+                            <p class="text-xs sm:text-sm text-gray-700 leading-relaxed font-normal">
+                                &ldquo;{rev.quote}&rdquo;
+                            </p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+
+    </div>
+</section>

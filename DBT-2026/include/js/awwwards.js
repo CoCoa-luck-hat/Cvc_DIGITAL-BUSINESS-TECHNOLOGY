@@ -62,7 +62,7 @@ function createInteractiveElements() {
         centerBox.className = "cinematic-blinds-center";
         centerBox.innerHTML = `
             <div class="cinematic-blinds-logo">
-                <img src="02_design/Logo-it-04.png" alt="IT Logo">
+                <img src="02_design/Logo-it-04.webp" alt="IT Logo">
             </div>
         `;
         wrapper.appendChild(centerBox);

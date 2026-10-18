@@ -12,14 +12,14 @@
                 nick: "ครูอ๊อด",
                 name: "นายสุริยา ต๊ะศรีเรือน",
                 role: "หัวหน้าแผนกวิชาฯ • ครูชำนาญการพิเศษ (คศ.3)",
-                img: "03_photo/3.3_teacher/crop_ครูสุริยา.png",
+                img: "03_photo/3.3_teacher/crop_ครูสุริยา.webp",
                 link: "index.php?click=1_suriya",
                 yt: null,
                 skills: ["Programming", "Database", "Data Analysis", "Office 365", "SQL"],
                 education: [
-                    { degree: "ปริญญาโท: วิทยาศาสตรมหาบัณฑิต (วท.ม.)", major: "สาขาวิชา: เทคโนโลยีสารสนเทศ", inst: "มหาวิทยาลัยราชภัฏเชียงราย", logo: "03_photo/icon/ราชภัฏเชียงราย.png" },
-                    { degree: "ปริญญาตรี: บริหารธุรกิจบัณฑิต (บธ.บ.)", major: "สาขาวิชา: ระบบสารสนเทศทางคอมพิวเตอร์", inst: "มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา เชียงราย", logo: "03_photo/icon/ล้านนาเชียงราย.png" },
-                    { degree: "ป.วิชาชีพครู: ป. บัณฑิตวิชาชีพครู", major: "สาขาวิชา: วิชาชีพครู", inst: "มหาวิทยาลัยมหาจุฬาลงกรณราชวิทยาลัย", logo: "03_photo/icon/จุฬาลงกรณ.png" }
+                    { degree: "ปริญญาโท: วิทยาศาสตรมหาบัณฑิต (วท.ม.)", major: "สาขาวิชา: เทคโนโลยีสารสนเทศ", inst: "มหาวิทยาลัยราชภัฏเชียงราย", logo: "03_photo/icon/ราชภัฏเชียงราย.webp" },
+                    { degree: "ปริญญาตรี: บริหารธุรกิจบัณฑิต (บธ.บ.)", major: "สาขาวิชา: ระบบสารสนเทศทางคอมพิวเตอร์", inst: "มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา เชียงราย", logo: "03_photo/icon/ล้านนาเชียงราย.webp" },
+                    { degree: "ป.วิชาชีพครู: ป. บัณฑิตวิชาชีพครู", major: "สาขาวิชา: วิชาชีพครู", inst: "มหาวิทยาลัยมหาจุฬาลงกรณราชวิทยาลัย", logo: "03_photo/icon/จุฬาลงกรณ.webp" }
                 ],
                 email: "Suruya.t@cvc.ac.th",
                 tel: "053-713036 ต่อ 114"
@@ -30,13 +30,13 @@
                 nick: "ครูน้อย",
                 name: "ดร. อเนกวงศ์ ยอดดำเนิน",
                 role: "ครูชำนาญการพิเศษ (คศ.3)",
-                img: "03_photo/3.3_teacher/crop_ดรอเนกวงrebg.png",
+                img: "03_photo/3.3_teacher/crop_ดรอเนกวงrebg.webp",
                 link: "index.php?click=2_Anekwong",
                 yt: null,
                 skills: ["Computer Programming", "Wifi-multi sensor Network", "IoT Technology", "Me U & Smart Device", "Cyber Network"],
                 education: [
                     { degree: "ปริญญาเอก: ปริญญาดุษฎีบัณฑิต", major: "สาขาวิชา: วิศวกรรมคอมพิวเตอร์", inst: "มหาวิทยาลัยแม่ฟ้าหลวง", logo: "03_photo/icon/inst_mfu.webp" },
-                    { degree: "ปริญญาโท: วิทยาศาสตรมหาบัณฑิต", major: "สาขาวิชา: วิทยาการคอมพิวเตอร์", inst: "มหาวิทยาลัยเชียงใหม่", logo: "03_photo/icon/ม.เชียงใหม่.png" }
+                    { degree: "ปริญญาโท: วิทยาศาสตรมหาบัณฑิต", major: "สาขาวิชา: วิทยาการคอมพิวเตอร์", inst: "มหาวิทยาลัยเชียงใหม่", logo: "03_photo/icon/ม.เชียงใหม่.webp" }
                 ],
                 email: "mycoreidea@gmail.com",
                 tel: "053-713036 ต่อ 114"
@@ -52,8 +52,8 @@
                 yt: null,
                 skills: ["Microsoft Office", "Database", "Data Analytics", "Computer Network", "Google Applications"],
                 education: [
-                    { degree: "ปริญญาโท: การศึกษามหาบัณฑิต (กศ.ม.)", major: "สาขาวิชา: การบริหารการศึกษา", inst: "วิทยาลัยเชียงราย", logo: "03_photo/icon/วิทยาลัยเชียงราย.png" },
-                    { degree: "ปริญญาตรี: บริหารธุรกิจบัณฑิต (บธ.บ.)", major: "สาขาวิชา: คอมพิวเตอร์ธุรกิจ", inst: "มหาวิทยาลัยราชภัฏเชียงราย", logo: "03_photo/icon/ราชภัฏเชียงราย.png" }
+                    { degree: "ปริญญาโท: การศึกษามหาบัณฑิต (กศ.ม.)", major: "สาขาวิชา: การบริหารการศึกษา", inst: "วิทยาลัยเชียงราย", logo: "03_photo/icon/วิทยาลัยเชียงราย.webp" },
+                    { degree: "ปริญญาตรี: บริหารธุรกิจบัณฑิต (บธ.บ.)", major: "สาขาวิชา: คอมพิวเตอร์ธุรกิจ", inst: "มหาวิทยาลัยราชภัฏเชียงราย", logo: "03_photo/icon/ราชภัฏเชียงราย.webp" }
                 ],
                 email: "jinda.j@cvc.ac.th",
                 tel: "053-713036 ต่อ 114"
@@ -65,12 +65,12 @@
                 nick: "ครูอนุพล",
                 name: "นายอนุพล จูมพลาศรี",
                 role: "ครูพิเศษสอน",
-                img: "03_photo/3.3_teacher/Crop2อนุพล12.png",
+                img: "03_photo/3.3_teacher/Crop2อนุพล12.webp",
                 link: "index.php?click=5_anuphl",
                 yt: null,
                 skills: ["Motion Graphics", "Software Development", "Graphic Design & Multimedia", "Web Design and Development", "Educational Technology Integration", "Project and Team Management"],
                 education: [
-                    { degree: "ปริญญาตรี: บริหารธุรกิจบัณฑิต (บธ.บ.)", major: "สาขาวิชา: ระบบสารสนเทศทางคอมพิวเตอร์", inst: "มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา", logo: "03_photo/icon/ล้านนาเชียงราย.png" }
+                    { degree: "ปริญญาตรี: บริหารธุรกิจบัณฑิต (บธ.บ.)", major: "สาขาวิชา: ระบบสารสนเทศทางคอมพิวเตอร์", inst: "มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา", logo: "03_photo/icon/ล้านนาเชียงราย.webp" }
                 ],
                 email: "anupol.j@cvc.ac.th",
                 tel: "053-713036 ต่อ 114"
@@ -81,7 +81,7 @@
                 nick: "ครูหลิน",
                 name: "นางสาวรสธร หลวงตา",
                 role: "ครูพิเศษสอน",
-                img: "03_photo/3.3_teacher/removebg_ครูรสธร.png",
+                img: "03_photo/3.3_teacher/removebg_ครูรสธร.webp",
                 link: "index.php?click=4_rodsathon",
                 yt: "https://www.youtube.com/@t-rodsathon/videos",
                 skills: [
@@ -105,13 +105,13 @@
                 nick: "ครูชาย",
                 name: "นายสงกรานต์ สุนทรปฏิคม",
                 role: "ครูพิเศษสอน",
-                img: "03_photo/3.3_teacher/crop_ครูชายREG.png",
+                img: "03_photo/3.3_teacher/crop_ครูชายREG.webp",
                 link: "index.php?click=6_songkarn",
                 yt: null,
                 skills: ["Motion Graphics", "UX / UI Design", "Branding", "Arduino", "Python Programming"],
                 education: [
-                    { degree: "ปริญญาตรี: นิเทศศาสตรบัณฑิต (นศ.บ.)", major: "สาขาวิชา: การจัดการโฆษณา", inst: "มหาวิทยาลัยกรุงเทพ", logo: "03_photo/icon/ม.กรุงเทพ.png" },
-                    { degree: "ปริญญาตรี: บริหารธุรกิจบัณฑิต (บธ.บ.)", major: "สาขาวิชา: คอมพิวเตอร์ธุรกิจ", inst: "สถาบันวิทยาการจัดการแห่งแปซิฟิค", logo: "03_photo/icon/สถาบันวิทยาการจัดการแห่งแปซิฟิค.png" }
+                    { degree: "ปริญญาตรี: นิเทศศาสตรบัณฑิต (นศ.บ.)", major: "สาขาวิชา: การจัดการโฆษณา", inst: "มหาวิทยาลัยกรุงเทพ", logo: "03_photo/icon/ม.กรุงเทพ.webp" },
+                    { degree: "ปริญญาตรี: บริหารธุรกิจบัณฑิต (บธ.บ.)", major: "สาขาวิชา: คอมพิวเตอร์ธุรกิจ", inst: "สถาบันวิทยาการจัดการแห่งแปซิฟิค", logo: "03_photo/icon/สถาบันวิทยาการจัดการแห่งแปซิฟิค.webp" }
                 ],
                 email: "songkran@cvc.ac.th",
                 tel: "053-713036 ต่อ 114"
@@ -127,7 +127,7 @@
                 yt: null,
                 skills: ["Microsoft Office", "Network System", "Data Analytics", "Object-Oriented Programming", "Google Applications"],
                 education: [
-                    { degree: "ปริญญาตรี: เทคโนโลยีบัณฑิต (ทล.บ.)", major: "สาขาวิชา: คอมพิวเตอร์ธุรกิจ", inst: "วิทยาลัยอาชีวศึกษาขอนแก่น", logo: "03_photo/icon/วิทยาลัยอาชีวศึกษาขอนแก่น.png" }
+                    { degree: "ปริญญาตรี: เทคโนโลยีบัณฑิต (ทล.บ.)", major: "สาขาวิชา: คอมพิวเตอร์ธุรกิจ", inst: "วิทยาลัยอาชีวศึกษาขอนแก่น", logo: "03_photo/icon/วิทยาลัยอาชีวศึกษาขอนแก่น.webp" }
                 ],
                 email: "sumet.s@cvc.ac.th",
                 tel: "053-713036 ต่อ 114"
@@ -138,13 +138,13 @@
                 nick: "ครูเอก",
                 name: "นายกฤษณวิชญ์ เยาว์ธานี",
                 role: "ครูพิเศษสอน",
-                img: "03_photo/3.3_teacher/crop2_เอก03.png",
+                img: "03_photo/3.3_teacher/crop2_เอก03.webp",
                 link: "index.php?click=8_Kritsanawich",
                 yt: null,
                 skills: ["Digital Literacy", "Digital Information Retrieval", "Computer S/W H/W & Maintenance"],
                 education: [
-                    { degree: "ปริญญาโท: การศึกษามหาบัณฑิต (กศ.ม.)", major: "สาขาวิชา: การบริหารการศึกษา", inst: "มหาวิทยาลัยพะเยา", logo: "03_photo/icon/มอพะเยา.png" },
-                    { degree: "ปริญญาตรี: ศิลปศาสตรบัณฑิต (ศศ.บ.)", major: "สาขาวิชา: สารสนเทศศาสตร์", inst: "มหาวิทยาลัยสุโขทัยธรรมาธิราช", logo: "03_photo/icon/สุโขทัยธรรมาธิราช.png" }
+                    { degree: "ปริญญาโท: การศึกษามหาบัณฑิต (กศ.ม.)", major: "สาขาวิชา: การบริหารการศึกษา", inst: "มหาวิทยาลัยพะเยา", logo: "03_photo/icon/มอพะเยา.webp" },
+                    { degree: "ปริญญาตรี: ศิลปศาสตรบัณฑิต (ศศ.บ.)", major: "สาขาวิชา: สารสนเทศศาสตร์", inst: "มหาวิทยาลัยสุโขทัยธรรมาธิราช", logo: "03_photo/icon/สุโขทัยธรรมาธิราช.webp" }
                 ],
                 email: "Krissanawit@cvc.ac.th",
                 tel: "053-713036 ต่อ 114"
@@ -719,6 +719,76 @@
         };
 
         startAutoCycle();
+
+        // 7. Cinematic Staggered Fade-in Entrance Choreography
+        function playFacultyEntranceAnimation() {
+            if (typeof gsap === 'undefined') return;
+
+            const topBar = document.getElementById("fp-top-bar");
+            const backdrop = document.getElementById("fp-backdrop-name");
+            const portrait = document.getElementById("fp-portrait-box");
+            const leftFlank = document.getElementById("fp-left-flank");
+            const rightFlank = document.getElementById("fp-right-flank");
+            const bottomRail = document.getElementById("fp-bottom-rail");
+            const ambientGlow = document.getElementById("fp-ambient-glow");
+
+            const tl = gsap.timeline({
+                defaults: { ease: "power3.out" }
+            });
+
+            // Set initial hidden state with subtle depth coordinates
+            gsap.set(topBar, { opacity: 0, y: -20 });
+            gsap.set(backdrop, { opacity: 0, scale: 0.88, y: 35 });
+            gsap.set(portrait, { opacity: 0, scale: 0.92, y: 45 });
+            gsap.set([leftFlank, rightFlank], { opacity: 0, y: 30 });
+            gsap.set(bottomRail, { opacity: 0, y: 25 });
+            if (ambientGlow) gsap.set(ambientGlow, { opacity: 0, scale: 0.8 });
+
+            tl.to(topBar, {
+                opacity: 1,
+                y: 0,
+                duration: 0.75
+            })
+            .to(backdrop, {
+                opacity: 1,
+                scale: 1,
+                y: 0,
+                duration: 0.85
+            }, "-=0.55")
+            .to(portrait, {
+                opacity: 1,
+                scale: 1,
+                y: 0,
+                duration: 0.8
+            }, "-=0.65")
+            .to([leftFlank, rightFlank], {
+                opacity: 1,
+                y: 0,
+                duration: 0.7,
+                stagger: 0.12
+            }, "-=0.6")
+            .to(bottomRail, {
+                opacity: 1,
+                y: 0,
+                duration: 0.6
+            }, "-=0.5");
+
+            if (ambientGlow) {
+                tl.to(ambientGlow, { opacity: 1, scale: 1, duration: 1.2 }, 0);
+            }
+        }
+
+        playFacultyEntranceAnimation();
+
+        // BFCache (Back/Forward Navigation) Instant Safety Recovery
+        window.addEventListener("pageshow", (e) => {
+            if (e.persisted) {
+                const elements = ["#fp-top-bar", "#fp-backdrop-name", "#fp-portrait-box", "#fp-left-flank", "#fp-right-flank", "#fp-bottom-rail", "#fp-ambient-glow"];
+                if (typeof gsap !== 'undefined') {
+                    gsap.set(elements, { opacity: 1, x: 0, y: 0, scale: 1 });
+                }
+            }
+        });
     };
 
     // Immediate bottom auto-initialization

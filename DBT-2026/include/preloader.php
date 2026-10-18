@@ -175,7 +175,7 @@ try {
 
         <!-- Logo Image (Initially hidden, scales up big then down to normal) -->
         <div class="preloader-logo-wrapper" style="opacity: 0; transform: scale(0.4);">
-            <img src="02_design/DBTLOGO.png" alt="DBT Logo" class="preloader-logo-img">
+            <img src="02_design/DBTLOGO.webp" alt="DBT Logo" class="preloader-logo-img">
         </div>
 
         <!-- Clean Department Title Text -->

@@ -719,7 +719,7 @@
     }
 
     .fp-top-bar {
-        padding: 85px 24px 6px;
+        padding: 72px 18px 4px;
         flex-direction: row;
         justify-content: space-between;
         align-items: baseline;
@@ -772,10 +772,10 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        padding: 4px 20px;
-        gap: 8px;
+        padding: 4px 16px;
+        gap: 6px;
         text-align: center;
-        max-height: calc(100vh - 160px);
+        max-height: calc(100vh - 140px);
         box-sizing: border-box;
     }
 
@@ -792,7 +792,7 @@
     }
 
     .fp-fullname-heading {
-        font-size: clamp(22px, 3.2vw, 32px);
+        font-size: clamp(20px, 3.2vw, 30px);
         margin-bottom: 2px;
     }
 
@@ -807,7 +807,7 @@
         flex: 1;
         width: 100%;
         height: auto;
-        max-height: 48vh;
+        max-height: 44vh;
         display: flex;
         align-items: flex-end;
         justify-content: center;
@@ -817,7 +817,7 @@
 
     .fp-pure-cutout-img {
         height: 100%;
-        max-height: 46vh;
+        max-height: clamp(160px, 34vh, 42vh);
         width: auto;
         object-fit: contain;
         display: block;
@@ -829,7 +829,7 @@
         text-align: center;
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        gap: 4px;
     }
 
     .fp-skills-label {
@@ -1112,5 +1112,39 @@
     .fp-editorial-media-row {
         margin-top: 16px;
         padding-top: 12px;
+    }
+
+    /* Special Adaptive Scaling for Short Screen Heights (e.g. iPhone SE, landscape phones) */
+    @media (max-height: 740px) {
+        .fp-top-bar {
+            padding-top: 86px !important;
+            padding-bottom: 2px !important;
+        }
+        .fp-fullname-heading {
+            font-size: 18px !important;
+        }
+        .fp-role-text {
+            font-size: 11px !important;
+        }
+        .fp-main-stage-container {
+            gap: 2px !important;
+        }
+        .fp-pure-cutout-img {
+            max-height: clamp(110px, 23vh, 155px) !important;
+        }
+        .fp-skills-container {
+            gap: 2px !important;
+        }
+        .fp-skill-chip {
+            font-size: 10px !important;
+            padding: 2px 6px !important;
+        }
+        .fp-btn-modal-open {
+            padding: 5px 14px !important;
+            font-size: 11.5px !important;
+        }
+        .fp-bottom-rail-container {
+            padding: 2px 6px 4px !important;
+        }
     }
 }

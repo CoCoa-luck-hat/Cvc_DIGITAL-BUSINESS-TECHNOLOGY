@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Carousel from '../components/home/Carousel.astro';
+import Majors from '../components/home/Majors.astro';
+import Features from '../components/home/Features.astro';
+import Steps from '../components/home/Steps.astro';
+import Ribbons from '../components/home/Ribbons.astro';
+import Jobs from '../components/home/Jobs.astro';
+import Reviews from '../components/home/Reviews.astro';
+---
+
+<Layout
+  title="แผนกวิชาเทคโนโลยีธุรกิจดิจิทัล | วิทยาลัยอาชีวศึกษาเชียงราย (CVC)"
+  description="หลักสูตรวิชาชีพด้านเทคโนโลยีธุรกิจดิจิทัล นวัตกรรมธุรกิจ ข้อมูลและอีคอมเมิร์ซ วิทยาลัยอาชีวศึกษาเชียงราย มุ่งสู่อนาคตดิจิทัลระดับมืออาชีพ"
+  currentPath="/"
+  isHome={true}
+>
+    <Carousel />
+    <div class="bg-neutral-bg w-full relative z-10">
+        <Majors />
+        <Features />
+        <Steps />
+        <Ribbons />
+        <Jobs />
+        <Reviews />
+    </div>
+</Layout>

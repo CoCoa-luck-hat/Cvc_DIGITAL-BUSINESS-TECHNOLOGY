@@ -91,6 +91,8 @@
 
 .maj-main-title .maj-crimson-text {
     color: var(--maj-crimson);
+    display: inline-block;
+    white-space: nowrap;
 }
 
 .maj-sub-desc {
@@ -595,6 +597,10 @@
 }
 
 @media (max-width: 640px) {
+    .maj-main-title {
+        font-size: clamp(22px, 6.2vw, 32px);
+    }
+
     .maj-filter-bar {
         padding: 4px 6px;
     }

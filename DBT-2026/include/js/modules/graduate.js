@@ -332,6 +332,114 @@
 
         // Initialize Filter & Cinema Stage on load
         filterGraduates(false);
+
+        // Cinematic Staggered Fade-in Entrance Choreography
+        function playGraduateEntranceAnimation() {
+            if (typeof gsap === 'undefined') return;
+
+            const title = document.querySelector(".split-title");
+            const desc = document.querySelector(".split-desc");
+            const filtersBox = document.querySelector(".split-filters-box");
+            const actionBar = document.querySelector(".split-action-bar");
+            const cinemaStage = document.getElementById("split-cinema-stage");
+            const thumbDrawer = document.getElementById("split-thumb-drawer");
+            const thumbItems = document.querySelectorAll(".split-thumb-item");
+            const glow = document.querySelector(".split-ambient-glow");
+
+            const tl = gsap.timeline({
+                defaults: { ease: "power3.out" }
+            });
+
+            // Set initial hidden coordinates
+            if (title) gsap.set(title, { opacity: 0, y: -25 });
+            if (desc) gsap.set(desc, { opacity: 0, y: 15 });
+            if (filtersBox) gsap.set(filtersBox, { opacity: 0, y: 25 });
+            if (actionBar) gsap.set(actionBar, { opacity: 0, y: 20 });
+            if (cinemaStage) gsap.set(cinemaStage, { opacity: 0, scale: 0.93, y: 35 });
+            if (thumbDrawer) gsap.set(thumbDrawer, { opacity: 0, y: 25 });
+            if (thumbItems.length) gsap.set(thumbItems, { opacity: 0, scale: 0.9, y: 15 });
+            if (glow) gsap.set(glow, { opacity: 0, scale: 0.85 });
+
+            if (title) {
+                tl.to(title, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.75
+                });
+            }
+
+            if (desc) {
+                tl.to(desc, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.65
+                }, "-=0.55");
+            }
+
+            if (filtersBox) {
+                tl.to(filtersBox, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.7
+                }, "-=0.5");
+            }
+
+            if (actionBar) {
+                tl.to(actionBar, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6
+                }, "-=0.45");
+            }
+
+            if (cinemaStage) {
+                tl.to(cinemaStage, {
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    duration: 0.8
+                }, "-=0.75");
+            }
+
+            if (thumbDrawer) {
+                tl.to(thumbDrawer, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.65
+                }, "-=0.5");
+            }
+
+            if (thumbItems.length) {
+                tl.to(thumbItems, {
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    duration: 0.5,
+                    stagger: 0.025
+                }, "-=0.45");
+            }
+
+            if (glow) {
+                tl.to(glow, {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 1.2
+                }, 0);
+            }
+        }
+
+        playGraduateEntranceAnimation();
+
+        // BFCache (Back/Forward Navigation) Instant Safety Recovery
+        window.addEventListener("pageshow", (e) => {
+            if (e.persisted) {
+                if (typeof gsap !== 'undefined') {
+                    gsap.set([".split-title", ".split-desc", ".split-filters-box", ".split-action-bar", "#split-cinema-stage", "#split-thumb-drawer", ".split-thumb-item", ".split-ambient-glow"], {
+                        opacity: 1, x: 0, y: 0, scale: 1
+                    });
+                }
+            }
+        });
     }
 
     window.initGraduateStudio = initGraduateStudio;

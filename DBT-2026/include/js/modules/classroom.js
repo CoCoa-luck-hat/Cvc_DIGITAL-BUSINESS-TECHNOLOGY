@@ -108,7 +108,7 @@
         const btnLoadMore = document.getElementById("maj-btn-load-more");
         const loadCountBadge = document.getElementById("maj-load-count-badge");
 
-        function distributeTiles(filterVal = "all", isAppending = false) {
+        function distributeTiles(filterVal = "all", isAppending = false, isInitial = false) {
             const col0 = document.getElementById("maj-col-0");
             const col1 = document.getElementById("maj-col-1");
             const col2 = document.getElementById("maj-col-2");
@@ -184,7 +184,7 @@
                 targetCol.appendChild(figure);
             });
 
-            if (typeof gsap !== 'undefined') {
+            if (typeof gsap !== 'undefined' && !isInitial) {
                 if (isAppending) {
                     const newlyAddedTiles = Array.from(document.querySelectorAll(".maj-photo-tile")).slice(currentVisibleLimit - loadStep);
                     gsap.fromTo(newlyAddedTiles, { opacity: 0, y: 25, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, stagger: 0.04, ease: "power2.out" });
@@ -233,7 +233,85 @@
         }
 
         // Initialize state
-        distributeTiles("all", false);
+        distributeTiles("all", false, true);
+
+        // 4. Cinematic Staggered Fade-in Entrance Choreography
+        function playClassroomEntranceAnimation() {
+            if (typeof gsap === 'undefined') return;
+
+            const header = document.querySelector(".maj-header-wrap");
+            const filterContainer = document.querySelector(".maj-filter-bar-container");
+            const tiles = document.querySelectorAll(".maj-photo-tile");
+            const loadMore = document.getElementById("maj-load-more-wrap");
+            const glow = document.querySelector(".maj-ambient-glow");
+
+            const tl = gsap.timeline({
+                defaults: { ease: "power3.out" }
+            });
+
+            // Set initial hidden states
+            if (header) gsap.set(header, { opacity: 0, y: -25 });
+            if (filterContainer) gsap.set(filterContainer, { opacity: 0, y: 20, scale: 0.98 });
+            if (tiles.length) gsap.set(tiles, { opacity: 0, y: 35, scale: 0.94 });
+            if (loadMore) gsap.set(loadMore, { opacity: 0, y: 20 });
+            if (glow) gsap.set(glow, { opacity: 0, scale: 0.8 });
+
+            if (header) {
+                tl.to(header, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.75
+                });
+            }
+
+            if (filterContainer) {
+                tl.to(filterContainer, {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.7
+                }, "-=0.5");
+            }
+
+            if (tiles.length) {
+                tl.to(tiles, {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.7,
+                    stagger: 0.04
+                }, "-=0.45");
+            }
+
+            if (loadMore && loadMore.style.display !== "none") {
+                tl.to(loadMore, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.5
+                }, "-=0.25");
+            }
+
+            if (glow) {
+                tl.to(glow, {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 1.2
+                }, 0);
+            }
+        }
+
+        playClassroomEntranceAnimation();
+
+        // BFCache (Back/Forward Navigation) Instant Safety Recovery
+        window.addEventListener("pageshow", (e) => {
+            if (e.persisted) {
+                if (typeof gsap !== 'undefined') {
+                    gsap.set([".maj-header-wrap", ".maj-filter-bar-container", ".maj-photo-tile", "#maj-load-more-wrap", ".maj-ambient-glow"], {
+                        opacity: 1, x: 0, y: 0, scale: 1
+                    });
+                }
+            }
+        });
 
         // Responsive resize listener with debounce
         let resizeTimer;

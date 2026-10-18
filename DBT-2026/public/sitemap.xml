@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage -->
+  <url>
+    <loc>https://cvc.ac.th/web_branch/dbt_2026/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Major: ปวช. เทคโนโลยีธุรกิจดิจิทัล -->
+  <url>
+    <loc>https://cvc.ac.th/web_branch/dbt_2026/index.php?click=dbt_voc</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Major: ปวส. เทคโนโลยีธุรกิจดิจิทัล -->
+  <url>
+    <loc>https://cvc.ac.th/web_branch/dbt_2026/index.php?click=dbt_dip</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Faculty & Teachers -->
+  <url>
+    <loc>https://cvc.ac.th/web_branch/dbt_2026/index.php?click=0_techer</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Classroom & Facilities -->
+  <url>
+    <loc>https://cvc.ac.th/web_branch/dbt_2026/index.php?click=c_all</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Awards & Graduate Directory -->
+  <url>
+    <loc>https://cvc.ac.th/web_branch/dbt_2026/index.php?click=graduate</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cvc.ac.th/web_branch/dbt_2026/index.php?click=awards_dbt</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cvc.ac.th/web_branch/dbt_2026/index.php?click=awards_student</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
