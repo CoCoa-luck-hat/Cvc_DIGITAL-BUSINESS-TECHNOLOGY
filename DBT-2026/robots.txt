@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Allow: /02_design/
+Allow: /03_photo/
+Allow: /include/
+
+# Disallow internal and configuration paths
+Disallow: /.agents/
+Disallow: /.git/
+Disallow: /components/
+
+# Sitemap reference for search engine bots
+Sitemap: https://cvc.ac.th/web_branch/it_2025/sitemap.xml

@@ -1,0 +1,853 @@
+/* ==========================================================================
+   SPLIT-SCREEN CINEMA STUDIO - 100VH FULL-VIEWPORT SINGLE SECTION
+   ========================================================================== */
+:root {
+    --split-crimson: #5f2d8c;
+    --split-crimson-glow: rgba(95, 45, 140, 0.25);
+    --split-dark: #0f172a;
+    --split-bg: #ffffff;
+    --split-border: rgba(226, 232, 240, 0.9);
+    --split-font: 'Prompt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+#split-graduate-studio {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 680px;
+    background-color: var(--split-bg);
+    font-family: var(--split-font);
+    color: var(--split-dark);
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding-top: 80px; /* Offset for top floating navbar */
+}
+
+/* Subtle Technical Grid Pattern */
+.split-blueprint-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: 
+        linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(circle at 60% 40%, black 50%, transparent 90%);
+    -webkit-mask-image: radial-gradient(circle at 60% 40%, black 50%, transparent 90%);
+}
+
+.split-ambient-glow {
+    position: absolute;
+    top: 50%;
+    right: 15%;
+    transform: translateY(-50%);
+    width: 55vw;
+    height: 55vw;
+    background: radial-gradient(circle, rgba(95, 45, 140, 0.05) 0%, rgba(124, 58, 237, 0.02) 60%, transparent 100%);
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Master 2-Column Split Stage Layout with Grid MinMax Protection */
+.split-stage-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: calc(100vh - 85px);
+    max-width: 1560px;
+    margin: 0 auto;
+    padding: 10px 32px 20px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 350px minmax(0, 1fr);
+    gap: 36px;
+    align-items: center;
+}
+
+/* ── Left Control & Info Hub ───────────────────────────────────────────── */
+.split-left-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 22px;
+    height: 100%;
+    max-height: 620px;
+    min-width: 0;
+}
+
+.split-title {
+    font-size: clamp(30px, 3vw, 44px);
+    font-weight: 900;
+    color: var(--split-dark);
+    line-height: 1.18;
+    letter-spacing: -0.03em;
+    margin: 0;
+    font-family: var(--split-font);
+}
+
+.split-title-crimson {
+    color: var(--split-crimson);
+    background: linear-gradient(135deg, #5f2d8c 0%, #451a69 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.split-desc {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.65;
+    margin: 0;
+    font-family: var(--split-font);
+}
+
+/* Minimalist Filter Controls */
+.split-filters-box {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.split-filter-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #94a3b8;
+    margin: 0 0 6px;
+}
+
+.split-categories-group,
+.split-years-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.split-btn-category,
+.split-btn-year {
+    appearance: none;
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    background: #f8fafc;
+    color: #475569;
+    padding: 7px 16px;
+    border-radius: 9999px;
+    font-family: var(--split-font);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.split-btn-category:hover,
+.split-btn-year:hover {
+    color: var(--split-crimson);
+    border-color: rgba(95, 45, 140, 0.3);
+    background: #ffffff;
+}
+
+.split-btn-category.active,
+.split-btn-year.active {
+    background: var(--split-crimson);
+    color: #ffffff;
+    border-color: var(--split-crimson);
+    font-weight: 700;
+    box-shadow: 0 4px 14px rgba(95, 45, 140, 0.25);
+}
+
+.split-tag-latest {
+    font-size: 9.5px;
+    font-weight: 800;
+    padding: 1px 5px;
+    border-radius: 9999px;
+    background: #8b5cf6;
+    color: #ffffff;
+}
+
+.split-btn-category.active .split-tag-latest,
+.split-btn-year.active .split-tag-latest {
+    background: #ffffff;
+    color: #5f2d8c;
+}
+
+.split-levels-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.split-btn-level {
+    appearance: none;
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    background: #f8fafc;
+    color: #64748b;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-family: var(--split-font);
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.split-btn-level:hover {
+    color: var(--split-crimson);
+    border-color: rgba(95, 45, 140, 0.3);
+    background: #ffffff;
+}
+
+.split-btn-level.active {
+    background: #0f172a;
+    color: #ffffff;
+    border-color: #0f172a;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+}
+
+.split-sheet-badge-level {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--split-crimson);
+    background: rgba(95, 45, 140, 0.08);
+    border: 1px solid rgba(95, 45, 140, 0.2);
+    padding: 3px 10px;
+    border-radius: 9999px;
+    font-family: var(--split-font);
+}
+
+/* Left Panel Bottom Action Bar */
+.split-action-bar {
+    padding-top: 10px;
+    border-top: 1px solid rgba(226, 232, 240, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.split-sheet-counter {
+    font-size: 13px;
+    font-weight: 700;
+    color: #334155;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.split-sheet-badge-level {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--split-crimson);
+    background: rgba(220, 38, 38, 0.08);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    padding: 3px 10px;
+    border-radius: 9999px;
+    font-family: var(--split-font);
+}
+
+/* ── Right Cinema Showcase Stage ───────────────────────────────────────── */
+.split-right-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    max-height: calc(100vh - 110px);
+    position: relative;
+    gap: 12px;
+    min-width: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Main Display Cinema Frame */
+.split-cinema-stage {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    border-radius: 24px;
+    background: #0f172a;
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    box-shadow: 0 20px 50px -12px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(15, 23, 42, 0.04);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.split-main-image-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0f172a;
+    overflow: hidden;
+}
+
+.split-main-img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    margin: auto;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.split-cinema-stage:hover .split-main-img {
+    transform: scale(1.02);
+}
+
+/* Top Floating Pill Badge */
+.split-cinema-badge {
+    position: absolute;
+    top: 16px;
+    left: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    pointer-events: none;
+    font-family: var(--split-font);
+}
+
+/* Top Right Zoom Icon */
+.split-cinema-zoom-btn {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--split-dark);
+    font-size: 14px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    z-index: 10;
+    transition: all 0.22s ease;
+}
+
+.split-cinema-stage:hover .split-cinema-zoom-btn {
+    background: var(--split-crimson);
+    color: #ffffff;
+    transform: scale(1.08);
+}
+
+/* Navigational Arrow Controls */
+.split-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--split-dark);
+    font-size: 15px;
+    cursor: pointer;
+    z-index: 15;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.split-nav-btn:hover {
+    background: var(--split-crimson);
+    color: #ffffff;
+    border-color: var(--split-crimson);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 8px 24px rgba(220, 38, 38, 0.28);
+}
+
+.split-nav-prev { left: 18px; }
+.split-nav-next { right: 18px; }
+
+/* ── Interactive Horizontal Thumbnail Drawer at Bottom ─────────────────── */
+.split-thumb-drawer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: 72px;
+    padding: 6px 4px;
+    box-sizing: border-box;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+    min-width: 0;
+}
+
+.split-thumb-drawer::-webkit-scrollbar {
+    display: none;
+}
+
+.split-thumb-item {
+    flex: 0 0 82px;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    border: 2px solid rgba(226, 232, 240, 0.9);
+    background-color: #0f172a;
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease, box-shadow 0.22s ease;
+    box-sizing: border-box;
+}
+
+.split-thumb-item:hover {
+    border-color: rgba(220, 38, 38, 0.5);
+    transform: translateY(-2px);
+}
+
+.split-thumb-item.active {
+    border-color: var(--split-crimson);
+    box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.25), 0 6px 16px rgba(220, 38, 38, 0.25);
+    transform: translateY(-2px) scale(1.04);
+}
+
+.split-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.split-thumb-label {
+    position: absolute;
+    bottom: 2px;
+    right: 4px;
+    background: rgba(15, 23, 42, 0.85);
+    color: #ffffff;
+    font-size: 9.5px;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-family: var(--split-font);
+}
+
+/* ── Cinematic Ultra-Minimal Lightbox Modal ────────────────────────────── */
+#split-lightbox-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+    background: rgba(10, 12, 16, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+#split-lightbox-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.split-lb-top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.split-lb-left-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    pointer-events: auto;
+}
+
+.split-lb-badge {
+    font-size: 12px;
+    font-weight: 700;
+    color: #ffffff;
+    background: var(--split-crimson);
+    padding: 4px 12px;
+    border-radius: 9999px;
+    letter-spacing: 0.04em;
+    font-family: var(--split-font);
+}
+
+.split-lb-top-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    pointer-events: auto;
+}
+
+.split-lb-counter-pill {
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-family: var(--split-font);
+}
+
+.split-lb-close-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: auto;
+}
+
+.split-lb-close-btn:hover {
+    background: var(--split-crimson);
+    border-color: var(--split-crimson);
+    transform: scale(1.1);
+}
+
+.split-lb-stage {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 90px 80px 100px;
+    box-sizing: border-box;
+}
+
+.split-lb-img-wrap {
+    position: relative;
+    max-width: 90vw;
+    max-height: 75vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.split-lb-main-img {
+    max-width: 100%;
+    max-height: 68vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 14px;
+    box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.split-lb-caption-bar {
+    margin-top: 14px;
+    text-align: center;
+    max-width: 800px;
+}
+
+.split-lb-caption-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 4px;
+    font-family: var(--split-font);
+}
+
+.split-lb-caption-text {
+    font-size: 13.5px;
+    color: rgba(226, 232, 240, 0.8);
+    margin: 0;
+    font-family: var(--split-font);
+}
+
+.split-lb-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 110;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.split-lb-nav-btn:hover {
+    background: var(--split-crimson);
+    border-color: var(--split-crimson);
+    transform: translateY(-50%) scale(1.12);
+}
+
+.split-lb-prev { left: 28px; }
+.split-lb-next { right: 28px; }
+
+/* ── Responsive Tablet & Mobile Viewports (<= 1024px) ──────────────────────────────── */
+@media (max-width: 1024px) {
+    #split-graduate-studio {
+        height: 100vh;
+        height: 100dvh;
+        min-height: 100dvh;
+        overflow: hidden;
+        padding: 85px 0 10px;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .split-stage-wrapper {
+        height: calc(100vh - 95px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        padding: 0 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .split-left-panel {
+        max-height: none;
+        height: auto;
+        gap: 6px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        flex-shrink: 0;
+    }
+
+    .split-title {
+        font-size: clamp(20px, 3.5vw, 28px);
+        line-height: 1.2;
+    }
+
+    .split-title br {
+        display: none;
+    }
+
+    .split-title span {
+        margin-left: 6px;
+    }
+
+    .split-desc {
+        display: none !important;
+    }
+
+    .split-filter-label {
+        display: none !important;
+    }
+
+    .split-filters-box {
+        gap: 6px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .split-years-group, .split-levels-group {
+        justify-content: center;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
+        scrollbar-width: none;
+        padding: 2px 4px;
+        gap: 5px;
+    }
+
+    .split-years-group::-webkit-scrollbar, .split-levels-group::-webkit-scrollbar {
+        display: none;
+    }
+
+    .split-btn-year {
+        padding: 6px 14px;
+        font-size: 12.5px;
+        min-height: 38px;
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .split-btn-level {
+        padding: 6px 12px;
+        font-size: 12px;
+        min-height: 38px;
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .split-action-bar {
+        display: none !important;
+    }
+
+    .split-right-panel {
+        flex: 1;
+        width: 100%;
+        height: auto;
+        min-height: 380px;
+        max-height: calc(100vh - 190px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 8px;
+        box-sizing: border-box;
+    }
+
+    .split-cinema-stage {
+        flex: 1;
+        height: 100%;
+        min-height: 320px;
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .split-main-photo {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+        border-radius: 12px;
+    }
+
+    .split-cinema-badge {
+        top: 10px;
+        left: 10px;
+        font-size: 11px;
+        padding: 4px 10px;
+    }
+
+    .split-cinema-zoom-btn {
+        top: 10px;
+        right: 10px;
+        width: 38px;
+        height: 38px;
+        font-size: 13px;
+    }
+
+    .split-nav-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 15px;
+    }
+
+    .split-nav-prev { left: 10px; }
+    .split-nav-next { right: 10px; }
+
+    .split-thumb-drawer {
+        height: 60px;
+        gap: 6px;
+        padding: 3px 6px;
+        flex-shrink: 0;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
+    }
+
+    .split-thumb-item {
+        flex: 0 0 74px;
+        border-radius: 8px;
+    }
+
+    .split-thumb-label {
+        font-size: 8.5px;
+        padding: 1px 3px;
+    }
+
+    .split-lb-stage {
+        padding: 70px 16px 80px;
+    }
+
+    .split-lb-nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .split-lb-prev { left: 8px; }
+    .split-lb-next { right: 8px; }
+}
+
+@media (max-width: 767px) {
+    #split-graduate-studio {
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+        padding: 90px 0 20px;
+        align-items: flex-start;
+    }
+
+    .split-stage-wrapper {
+        height: auto;
+    }
+
+    .split-right-panel {
+        height: 52vh;
+        min-height: 280px;
+        max-height: 420px;
+    }
+}
