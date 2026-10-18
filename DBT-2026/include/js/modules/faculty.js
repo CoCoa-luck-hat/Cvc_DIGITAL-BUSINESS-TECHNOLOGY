@@ -43,6 +43,40 @@
             },
             {
                 idx: 3,
+                backdrop: "JINDA",
+                nick: "ครูเจี๊ยบ",
+                name: "นางสาวจินดา ใจเจ็น",
+                role: "ครูพิเศษสอน (คศ.2)",
+                img: "03_photo/3.3_teacher/จิดดา - 1 - แก้ไขแล้ว.png",
+                link: "index.php?click=4_jinda",
+                yt: null,
+                skills: ["Microsoft Office", "Database", "Data Analytics", "Computer Network", "Google Applications"],
+                education: [
+                    { degree: "ปริญญาโท: การศึกษามหาบัณฑิต (กศ.ม.)", major: "สาขาวิชา: การบริหารการศึกษา", inst: "วิทยาลัยเชียงราย", logo: "03_photo/icon/วิทยาลัยเชียงราย.png" },
+                    { degree: "ปริญญาตรี: บริหารธุรกิจบัณฑิต (บธ.บ.)", major: "สาขาวิชา: คอมพิวเตอร์ธุรกิจ", inst: "มหาวิทยาลัยราชภัฏเชียงราย", logo: "03_photo/icon/ราชภัฏเชียงราย.png" }
+                ],
+                email: "jinda.j@cvc.ac.th",
+                tel: "053-713036 ต่อ 114"
+            },
+
+            {
+                idx: 4,
+                backdrop: "ANUPHOL",
+                nick: "ครูอนุพล",
+                name: "นายอนุพล จูมพลาศรี",
+                role: "ครูพิเศษสอน",
+                img: "03_photo/3.3_teacher/Crop2อนุพล12.png",
+                link: "index.php?click=5_anuphl",
+                yt: null,
+                skills: ["Motion Graphics", "Software Development", "Graphic Design & Multimedia", "Web Design and Development", "Educational Technology Integration", "Project and Team Management"],
+                education: [
+                    { degree: "ปริญญาตรี: บริหารธุรกิจบัณฑิต (บธ.บ.)", major: "สาขาวิชา: ระบบสารสนเทศทางคอมพิวเตอร์", inst: "มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา", logo: "03_photo/icon/ล้านนาเชียงราย.png" }
+                ],
+                email: "anupol.j@cvc.ac.th",
+                tel: "053-713036 ต่อ 114"
+            },
+            {
+                idx: 5,
                 backdrop: "RODSATHON",
                 nick: "ครูหลิน",
                 name: "นางสาวรสธร หลวงตา",
@@ -64,39 +98,6 @@
                 ],
                 email: "rodsathon_rt@cvc.ac.th",
                 tel: "082-091-5771"
-            },
-            {
-                idx: 4,
-                backdrop: "JINDA",
-                nick: "ครูเจี๊ยบ",
-                name: "นางสาวจินดา ใจเจ็น",
-                role: "ครูพิเศษสอน (คศ.2)",
-                img: "03_photo/3.3_teacher/จิดดา - 1 - แก้ไขแล้ว.png",
-                link: "index.php?click=4_jinda",
-                yt: null,
-                skills: ["Microsoft Office", "Database", "Data Analytics", "Computer Network", "Google Applications"],
-                education: [
-                    { degree: "ปริญญาโท: การศึกษามหาบัณฑิต (กศ.ม.)", major: "สาขาวิชา: การบริหารการศึกษา", inst: "วิทยาลัยเชียงราย", logo: "03_photo/icon/วิทยาลัยเชียงราย.png" },
-                    { degree: "ปริญญาตรี: บริหารธุรกิจบัณฑิต (บธ.บ.)", major: "สาขาวิชา: คอมพิวเตอร์ธุรกิจ", inst: "มหาวิทยาลัยราชภัฏเชียงราย", logo: "03_photo/icon/ราชภัฏเชียงราย.png" }
-                ],
-                email: "jinda.j@cvc.ac.th",
-                tel: "053-713036 ต่อ 114"
-            },
-            {
-                idx: 5,
-                backdrop: "ANUPHOL",
-                nick: "ครูอนุพล",
-                name: "นายอนุพล จูมพลาศรี",
-                role: "ครูพิเศษสอน",
-                img: "03_photo/3.3_teacher/Crop2อนุพล12.png",
-                link: "index.php?click=5_anuphl",
-                yt: null,
-                skills: ["Motion Graphics", "Software Development", "Graphic Design & Multimedia", "Web Design and Development", "Educational Technology Integration", "Project and Team Management"],
-                education: [
-                    { degree: "ปริญญาตรี: บริหารธุรกิจบัณฑิต (บธ.บ.)", major: "สาขาวิชา: ระบบสารสนเทศทางคอมพิวเตอร์", inst: "มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา", logo: "03_photo/icon/ล้านนาเชียงราย.png" }
-                ],
-                email: "anupol.j@cvc.ac.th",
-                tel: "053-713036 ต่อ 114"
             },
             {
                 idx: 6,

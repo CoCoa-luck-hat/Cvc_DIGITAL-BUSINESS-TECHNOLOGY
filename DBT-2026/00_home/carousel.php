@@ -5,7 +5,7 @@
         
         <!-- Autoplay Video Background (Unconditional Playback for All Devices & Network Speeds) -->
         <div class="home-hero-container">
-            <video class="home-hero-video" autoplay muted playsinline webkit-playsinline loop preload="metadata" aria-label="วิดีโอนำเสนอแผนกวิชาเทคโนโลยีธุรกิจดิจิทัล วิทยาลัยอาชีวศึกษาเชียงราย">
+            <video class="home-hero-video" poster="02_design/hero-poster.webp" autoplay muted playsinline webkit-playsinline loop preload="metadata" aria-label="วิดีโอนำเสนอแผนกวิชาเทคโนโลยีธุรกิจดิจิทัล วิทยาลัยอาชีวศึกษาเชียงราย">
                 <source src="02_design/Hero.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>

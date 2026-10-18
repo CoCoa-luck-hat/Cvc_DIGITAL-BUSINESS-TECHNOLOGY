@@ -4,6 +4,13 @@
  * แผนกวิชาเทคโนโลยีธุรกิจดิจิทัล
  */
 ?>
+<script>
+try {
+    if (sessionStorage.getItem('cvc_dbt_preloader_shown') === 'true') {
+        document.write('<style>#preloader-overlay{display:none!important;}</style>');
+    }
+} catch(e) {}
+</script>
 <style>
 #preloader-overlay {
     position: fixed !important;
@@ -183,7 +190,7 @@
 
     // 1. Instant Session Bypass if already viewed in this browser tab
     try {
-        if (sessionStorage.getItem('cvc_it_preloader_shown') === 'true') {
+        if (sessionStorage.getItem('cvc_dbt_preloader_shown') === 'true') {
             overlay.style.display = 'none';
             if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
             document.body.style.overflow = '';
@@ -192,23 +199,23 @@
     } catch(e) {}
 
     // 2. HARD GUARANTEE TIMEOUT FOR SLOW CONNECTIONS
-    // If user is on 2G/Slow connection or Data Saver, dismiss in 300ms. Normal max 1.1s.
+    // If user is on 2G/Slow connection or Data Saver, dismiss in 150ms. Normal max 450ms.
     var forceDismiss = function() {
         var el = document.getElementById('preloader-overlay');
         if (!el || el.dataset.dismissed) return;
         el.dataset.dismissed = 'true';
-        try { sessionStorage.setItem('cvc_it_preloader_shown', 'true'); } catch(e) {}
-        el.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
+        try { sessionStorage.setItem('cvc_dbt_preloader_shown', 'true'); } catch(e) {}
+        el.style.transition = 'opacity 0.25s ease, visibility 0.25s ease';
         el.style.opacity = '0';
         document.body.style.overflow = '';
         setTimeout(function() {
             if (el && el.parentNode) el.parentNode.removeChild(el);
-        }, 320);
+        }, 260);
     };
 
     var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
     var isSlow = conn && (conn.saveData || conn.effectiveType === '2g' || conn.effectiveType === 'slow-2g');
-    var maxWait = isSlow ? 300 : 1100;
+    var maxWait = isSlow ? 150 : 450;
     window.__cvcPreloadFallbackTimer = setTimeout(forceDismiss, maxWait);
 })();
 </script>

@@ -45,7 +45,7 @@
             }
 
             try {
-                sessionStorage.setItem('cvc_it_preloader_shown', 'true');
+                sessionStorage.setItem('cvc_dbt_preloader_shown', 'true');
             } catch (e) { }
 
             if (overlay) {
@@ -125,10 +125,10 @@
             }
         };
 
-        // Smooth Counter Interpolation (0 -> 100% over 0.7s)
+        // Fast Smooth Counter Interpolation (0 -> 100% over 0.35s)
         const counterTween = gsap.to(currentProgress, {
             value: 100,
-            duration: 0.75,
+            duration: 0.35,
             ease: 'power2.out',
             onUpdate: () => updateCounter(currentProgress.value),
             onComplete: () => {
@@ -164,48 +164,48 @@
             });
 
             // 1. Counter Out & Logo Entrance
-            tl.to(counterEl, { opacity: 0, scale: 0.85, duration: 0.15, ease: 'power2.in' });
+            tl.to(counterEl, { opacity: 0, scale: 0.85, duration: 0.12, ease: 'power2.in' });
             if (logoWrapper) {
                 tl.to(logoWrapper, {
                     opacity: 1,
                     scale: 1.0,
-                    duration: 0.25,
+                    duration: 0.2,
                     ease: 'back.out(1.2)'
-                }, '<+=0.04');
+                }, '<+=0.03');
             }
 
             if (titleText) {
                 tl.set(titleText, { display: 'block' }, '<');
-                tl.to(titleText, { opacity: 1, y: 0, duration: 0.2 }, '<');
+                tl.to(titleText, { opacity: 1, y: 0, duration: 0.15 }, '<');
             }
 
             // 2. Snappy Curtain Split Opening
             if (contentBox) {
-                tl.to(contentBox, { opacity: 0, scale: 0.96, duration: 0.18, ease: 'power2.in' }, '+=0.1');
+                tl.to(contentBox, { opacity: 0, scale: 0.96, duration: 0.15, ease: 'power2.in' }, '+=0.05');
             }
             if (curtainTop && curtainBottom) {
                 tl.to(curtainTop, {
                     yPercent: -100,
-                    duration: 0.45,
+                    duration: 0.35,
                     ease: 'power3.inOut',
                     force3D: true,
                     onStart: () => {
                         document.body.style.overflow = '';
                     }
-                }, '-=0.06');
+                }, '-=0.05');
                 tl.to(curtainBottom, {
                     yPercent: 100,
-                    duration: 0.45,
+                    duration: 0.35,
                     ease: 'power3.inOut',
                     force3D: true
                 }, '<');
             }
         }
 
-        // Strict Fallback Timer: Network-Adaptive Cap (300ms for slow networks, 850ms max for normal)
+        // Strict Fallback Timer: Network-Adaptive Cap (150ms for slow networks, 450ms max for normal)
         const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
         const isSlow = conn && (conn.saveData || conn.effectiveType === '2g' || conn.effectiveType === 'slow-2g');
-        const capDuration = isSlow ? 300 : 850;
+        const capDuration = isSlow ? 150 : 450;
 
         setTimeout(() => {
             if (!isCompleted) {

@@ -50,6 +50,16 @@ $metaTitles = [
 
 $pageTitle = $metaTitles[$route] ?? 'แผนกวิชาเทคโนโลยีธุรกิจดิจิทัล | วิทยาลัยอาชีวศึกษาเชียงราย';
 $pageDescription = 'หลักสูตรวิชาชีพด้านเทคโนโลยีธุรกิจดิจิทัล นวัตกรรมธุรกิจ ข้อมูลและอีคอมเมิร์ซ วิทยาลัยอาชีวศึกษาเชียงราย มุ่งสู่อนาคตดิจิทัลระดับมืออาชีพ';
+
+// Route Classification for High-Performance Conditional Asset Delivery
+$facultyRoutes = ['0_techer', 'teachers', 'teacher', '1_suriya', '2_Anekwong', '3_phithul', '4_jinda', '5_anuphl', '6_songkarn', '7_sumaet', '8_Kritsanawich', '1_thawatchai', '2_piyamat', '3_plaopilart', '4_rodsathon', '5_teerapat'];
+$classroomRoutes = ['c_all', 'c_521', 'c_651', 'c_655', 'c_661', 'c_662', 'c_663', 'c_941', 'c_241', 'c_242', 'c_653', 'c_654', 'classroom', 'classrooms'];
+$graduateRoutes = ['graduate', 'graduates', 'awards', 'awards_dbt', 'awards_dept', 'awards_student', 'awards_stu', 'awards_it', 'awards_sd'];
+
+$isFaculty = in_array($route, $facultyRoutes);
+$isClassroom = in_array($route, $classroomRoutes);
+$isGraduate = in_array($route, $graduateRoutes);
+$isHome = ($route === '' || $route === 'home');
 ?>
 
 <!DOCTYPE html>
@@ -110,7 +120,9 @@ $pageDescription = 'หลักสูตรวิชาชีพด้านเ
     <link rel="apple-touch-icon" href="02_design/DBTLOGO.png">
 
     <!-- Preload Critical Assets (LCP Optimization) -->
-    <link rel="preload" as="image" href="02_design/DBT-1.jpg" fetchpriority="high">
+    <?php if ($isHome): ?>
+    <link rel="preload" as="image" href="02_design/hero-poster.webp" fetchpriority="high">
+    <?php endif; ?>
 
     <!-- Google Web Fonts (Optimized essential weights for blazing-fast mobile rendering) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -119,28 +131,21 @@ $pageDescription = 'หลักสูตรวิชาชีพด้านเ
 
     <!-- Icon Font Stylesheet (High-reliability CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Tailwind CSS -->
     <link href="include/css/tailwind.css?v=<?= asset_v('include/css/tailwind.css') ?>" rel="stylesheet">
 
-    <!-- GSAP Core & Plugins (Local High-Speed Vendor Bundle) -->
-    <script src="include/js/vendor/gsap.min.js?v=<?= asset_v('include/js/vendor/gsap.min.js') ?>"></script>
-    <script src="include/js/vendor/ScrollTrigger.min.js?v=<?= asset_v('include/js/vendor/ScrollTrigger.min.js') ?>"></script>
-    <script src="include/js/vendor/Observer.min.js?v=<?= asset_v('include/js/vendor/Observer.min.js') ?>"></script>
-    <script>
-        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && typeof Observer !== 'undefined') {
-            gsap.registerPlugin(ScrollTrigger, Observer);
-        }
-    </script>
-
     <!-- Custom Stylesheet with Smart Caching -->
     <link rel="stylesheet" href="include/css/test.css?v=<?= asset_v('include/css/test.css') ?>">
 
-    <!-- Subpage Module Stylesheets (Pre-cached for instant 0ms FOUC-free PJAX transitions) -->
+    <!-- Subpage Module Stylesheets (Conditional Route Loading) -->
+    <?php if ($isFaculty): ?>
     <link rel="stylesheet" href="include/css/modules/faculty.css?v=<?= asset_v('include/css/modules/faculty.css') ?>">
+    <?php elseif ($isClassroom): ?>
     <link rel="stylesheet" href="include/css/modules/classroom.css?v=<?= asset_v('include/css/modules/classroom.css') ?>">
+    <?php elseif ($isGraduate): ?>
     <link rel="stylesheet" href="include/css/modules/graduate.css?v=<?= asset_v('include/css/modules/graduate.css') ?>">
+    <?php endif; ?>
 </head>
 
 
@@ -260,18 +265,29 @@ $pageDescription = 'หลักสูตรวิชาชีพด้านเ
         <?php include('components/footer.php'); ?>
     </div>
 
-    <!-- Core JavaScript Libraries (Local High-Speed Vendor Bundle) -->
-    <script src="include/js/vendor/jquery.min.js?v=<?= asset_v('include/js/vendor/jquery.min.js') ?>"></script>
-    <script src="include/js/vendor/bootstrap.bundle.min.js?v=<?= asset_v('include/js/vendor/bootstrap.bundle.min.js') ?>"></script>
+    <!-- GSAP Core & High-Performance Plugins -->
+    <script src="include/js/vendor/gsap.min.js?v=<?= asset_v('include/js/vendor/gsap.min.js') ?>"></script>
+    <script src="include/js/vendor/ScrollTrigger.min.js?v=<?= asset_v('include/js/vendor/ScrollTrigger.min.js') ?>"></script>
+    <script src="include/js/vendor/Observer.min.js?v=<?= asset_v('include/js/vendor/Observer.min.js') ?>"></script>
+    <script>
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && typeof Observer !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger, Observer);
+        }
+    </script>
 
     <!-- Template Javascript -->
     <script src="include/js/lenis.min.js?v=<?= asset_v('include/js/lenis.min.js') ?>"></script>
     <script src="include/js/main.js?v=<?= asset_v('include/js/main.js') ?>"></script>
     <script src="include/js/test.js?v=<?= asset_v('include/js/test.js') ?>"></script>
-    <!-- Subpage Interactive Modules -->
+
+    <!-- Subpage Interactive Modules (Conditional Route Loading) -->
+    <?php if ($isFaculty): ?>
     <script src="include/js/modules/faculty.js?v=<?= asset_v('include/js/modules/faculty.js') ?>"></script>
+    <?php elseif ($isClassroom): ?>
     <script src="include/js/modules/classroom.js?v=<?= asset_v('include/js/modules/classroom.js') ?>"></script>
+    <?php elseif ($isGraduate): ?>
     <script src="include/js/modules/graduate.js?v=<?= asset_v('include/js/modules/graduate.js') ?>"></script>
+    <?php endif; ?>
 
     <!-- GSAP & Awwwards Page Transitions and Interactions -->
     <script src="include/js/awwwards.js?v=<?= asset_v('include/js/awwwards.js') ?>"></script>

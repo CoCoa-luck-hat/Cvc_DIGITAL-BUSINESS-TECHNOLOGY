@@ -1,15 +1,16 @@
-(function ($) {
+(function () {
     "use strict";
 
-    // Spinner Hide Helper
+    // Spinner Hide Helper (Pure Vanilla JS)
     var spinner = function () {
         setTimeout(function () {
-            if ($('#spinner').length > 0) {
-                $('#spinner').removeClass('show');
+            var spinnerEl = document.getElementById('spinner');
+            if (spinnerEl) {
+                spinnerEl.classList.remove('show');
             }
         }, 1);
     };
-    spinner(0);
+    spinner();
 
     // Back to top button - Show ONLY when reached the Footer
     (function () {
@@ -75,13 +76,13 @@
             // Initial verification
             updateFooterState();
 
-            // Click Scroll-to-Top
-            $(backToTopBtn).off('click').on('click', function (e) {
+            // Click Scroll-to-Top (Pure Vanilla JS)
+            backToTopBtn.addEventListener('click', function (e) {
                 e.preventDefault();
-                if (typeof window.lenis?.scrollTo === 'function') {
+                if (window.lenis && typeof window.lenis.scrollTo === 'function') {
                     window.lenis.scrollTo(0, { duration: 1.2 });
                 } else {
-                    $('html, body').animate({ scrollTop: 0 }, 500);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
                 return false;
             });
@@ -94,4 +95,4 @@
         }
     })();
 
-})(jQuery);
+})();

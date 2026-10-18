@@ -291,7 +291,7 @@
     <button class="sec3-lightbox-close" id="sec3-lightbox-close-btn" aria-label="ปิดภาพขยาย">
         <i class="fas fa-times"></i>
     </button>
-    <img src="02_design/โครงสร้างหลักสูตร-ปวช.png" alt="ผังโครงสร้างหลักสูตร ปวช. ขนาดเต็ม" id="sec3-lightbox-img">
+    <img src="02_design/โครงสร้างหลักสูตร-ปวช.png" alt="ผังโครงสร้างหลักสูตร ปวช. ขนาดเต็ม" id="sec3-lightbox-img" loading="lazy" decoding="async">
 </div>
 
 <!-- GSAP ScrollTrigger Script for Section 3 Sequence -->

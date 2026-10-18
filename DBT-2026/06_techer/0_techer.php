@@ -103,15 +103,15 @@ if (!defined('INDEX_LOADED')) {
                     <img class="fp-thumb-item-avatar" src="03_photo/3.3_teacher/crop_ดรอเนกวง.png" alt="ครูน้อย" loading="lazy" decoding="async">
                     <span>ครูน้อย</span>
                 </button>
-                <button class="fp-thumb-item-btn" data-idx="3" type="button">
+                <button class="fp-thumb-item-btn" data-idx="2" type="button">
                     <img class="fp-thumb-item-avatar" src="03_photo/3.3_teacher/crop_จิดดา02.png" alt="ครูเจี๊ยบ" loading="lazy" decoding="async">
                     <span>ครูเจี๊ยบ</span>
                 </button>
-                <button class="fp-thumb-item-btn" data-idx="4" type="button">
+                <button class="fp-thumb-item-btn" data-idx="3" type="button">
                     <img class="fp-thumb-item-avatar" src="03_photo/3.3_teacher/crop2_อนุพล1.jpg" alt="ครูอนุพล" loading="lazy" decoding="async">
                     <span>ครูอนุพล</span>
                 </button>
-                <button class="fp-thumb-item-btn" data-idx="2" type="button">
+                <button class="fp-thumb-item-btn" data-idx="4" type="button">
                     <img class="fp-thumb-item-avatar" src="03_photo/3.3_teacher/teacher_rodsathon_crop.webp" alt="ครูหลิน" loading="lazy" decoding="async">
                     <span>ครูหลิน</span>
                 </button>
