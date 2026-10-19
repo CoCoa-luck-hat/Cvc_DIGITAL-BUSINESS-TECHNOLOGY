@@ -12,14 +12,14 @@
                 nick: "ครูอ๊อด",
                 name: "นายสุริยา ต๊ะศรีเรือน",
                 role: "หัวหน้าแผนกวิชาฯ • ครูชำนาญการพิเศษ (คศ.3)",
-                img: "03_photo/3.3_teacher/crop_ครูสุริยา.webp",
+                img: "/03_photo/3.3_teacher/crop_ครูสุริยา.webp",
                 link: "index.php?click=1_suriya",
                 yt: null,
                 skills: ["Programming", "Database", "Data Analysis", "Office 365", "SQL"],
                 education: [
-                    { degree: "ปริญญาโท: วิทยาศาสตรมหาบัณฑิต (วท.ม.)", major: "สาขาวิชา: เทคโนโลยีสารสนเทศ", inst: "มหาวิทยาลัยราชภัฏเชียงราย", logo: "03_photo/icon/ราชภัฏเชียงราย.webp" },
-                    { degree: "ปริญญาตรี: บริหารธุรกิจบัณฑิต (บธ.บ.)", major: "สาขาวิชา: ระบบสารสนเทศทางคอมพิวเตอร์", inst: "มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา เชียงราย", logo: "03_photo/icon/ล้านนาเชียงราย.webp" },
-                    { degree: "ป.วิชาชีพครู: ป. บัณฑิตวิชาชีพครู", major: "สาขาวิชา: วิชาชีพครู", inst: "มหาวิทยาลัยมหาจุฬาลงกรณราชวิทยาลัย", logo: "03_photo/icon/จุฬาลงกรณ.webp" }
+                    { degree: "ปริญญาโท: วิทยาศาสตรมหาบัณฑิต (วท.ม.)", major: "สาขาวิชา: เทคโนโลยีสารสนเทศ", inst: "มหาวิทยาลัยราชภัฏเชียงราย", logo: "/03_photo/icon/ราชภัฏเชียงราย.webp" },
+                    { degree: "ปริญญาตรี: บริหารธุรกิจบัณฑิต (บธ.บ.)", major: "สาขาวิชา: ระบบสารสนเทศทางคอมพิวเตอร์", inst: "มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา เชียงราย", logo: "/03_photo/icon/ล้านนาเชียงราย.webp" },
+                    { degree: "ป.วิชาชีพครู: ป. บัณฑิตวิชาชีพครู", major: "สาขาวิชา: วิชาชีพครู", inst: "มหาวิทยาลัยมหาจุฬาลงกรณราชวิทยาลัย", logo: "/03_photo/icon/จุฬาลงกรณ.webp" }
                 ],
                 email: "Suruya.t@cvc.ac.th",
                 tel: "053-713036 ต่อ 114"
@@ -30,13 +30,13 @@
                 nick: "ครูน้อย",
                 name: "ดร. อเนกวงศ์ ยอดดำเนิน",
                 role: "ครูชำนาญการพิเศษ (คศ.3)",
-                img: "03_photo/3.3_teacher/crop_ดรอเนกวงrebg.webp",
+                img: "/03_photo/3.3_teacher/crop_ดรอเนกวงrebg.webp",
                 link: "index.php?click=2_Anekwong",
                 yt: null,
                 skills: ["Computer Programming", "Wifi-multi sensor Network", "IoT Technology", "Me U & Smart Device", "Cyber Network"],
                 education: [
-                    { degree: "ปริญญาเอก: ปริญญาดุษฎีบัณฑิต", major: "สาขาวิชา: วิศวกรรมคอมพิวเตอร์", inst: "มหาวิทยาลัยแม่ฟ้าหลวง", logo: "03_photo/icon/inst_mfu.webp" },
-                    { degree: "ปริญญาโท: วิทยาศาสตรมหาบัณฑิต", major: "สาขาวิชา: วิทยาการคอมพิวเตอร์", inst: "มหาวิทยาลัยเชียงใหม่", logo: "03_photo/icon/ม.เชียงใหม่.webp" }
+                    { degree: "ปริญญาเอก: ปริญญาดุษฎีบัณฑิต", major: "สาขาวิชา: วิศวกรรมคอมพิวเตอร์", inst: "มหาวิทยาลัยแม่ฟ้าหลวง", logo: "/03_photo/icon/inst_mfu.webp" },
+                    { degree: "ปริญญาโท: วิทยาศาสตรมหาบัณฑิต", major: "สาขาวิชา: วิทยาการคอมพิวเตอร์", inst: "มหาวิทยาลัยเชียงใหม่", logo: "/03_photo/icon/ม.เชียงใหม่.webp" }
                 ],
                 email: "mycoreidea@gmail.com",
                 tel: "053-713036 ต่อ 114"
@@ -47,13 +47,13 @@
                 nick: "ครูเจี๊ยบ",
                 name: "นางสาวจินดา ใจเจ็น",
                 role: "ครูพิเศษสอน (คศ.2)",
-                img: "03_photo/3.3_teacher/จิดดา - 1 - แก้ไขแล้ว.png",
+                img: "/03_photo/3.3_teacher/จิดดา - 1 - แก้ไขแล้ว.webp",
                 link: "index.php?click=4_jinda",
                 yt: null,
                 skills: ["Microsoft Office", "Database", "Data Analytics", "Computer Network", "Google Applications"],
                 education: [
-                    { degree: "ปริญญาโท: การศึกษามหาบัณฑิต (กศ.ม.)", major: "สาขาวิชา: การบริหารการศึกษา", inst: "วิทยาลัยเชียงราย", logo: "03_photo/icon/วิทยาลัยเชียงราย.webp" },
-                    { degree: "ปริญญาตรี: บริหารธุรกิจบัณฑิต (บธ.บ.)", major: "สาขาวิชา: คอมพิวเตอร์ธุรกิจ", inst: "มหาวิทยาลัยราชภัฏเชียงราย", logo: "03_photo/icon/ราชภัฏเชียงราย.webp" }
+                    { degree: "ปริญญาโท: การศึกษามหาบัณฑิต (กศ.ม.)", major: "สาขาวิชา: การบริหารการศึกษา", inst: "วิทยาลัยเชียงราย", logo: "/03_photo/icon/วิทยาลัยเชียงราย.webp" },
+                    { degree: "ปริญญาตรี: บริหารธุรกิจบัณฑิต (บธ.บ.)", major: "สาขาวิชา: คอมพิวเตอร์ธุรกิจ", inst: "มหาวิทยาลัยราชภัฏเชียงราย", logo: "/03_photo/icon/ราชภัฏเชียงราย.webp" }
                 ],
                 email: "jinda.j@cvc.ac.th",
                 tel: "053-713036 ต่อ 114"
@@ -65,12 +65,12 @@
                 nick: "ครูอนุพล",
                 name: "นายอนุพล จูมพลาศรี",
                 role: "ครูพิเศษสอน",
-                img: "03_photo/3.3_teacher/Crop2อนุพล12.webp",
+                img: "/03_photo/3.3_teacher/Crop2อนุพล12.webp",
                 link: "index.php?click=5_anuphl",
                 yt: null,
                 skills: ["Motion Graphics", "Software Development", "Graphic Design & Multimedia", "Web Design and Development", "Educational Technology Integration", "Project and Team Management"],
                 education: [
-                    { degree: "ปริญญาตรี: บริหารธุรกิจบัณฑิต (บธ.บ.)", major: "สาขาวิชา: ระบบสารสนเทศทางคอมพิวเตอร์", inst: "มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา", logo: "03_photo/icon/ล้านนาเชียงราย.webp" }
+                    { degree: "ปริญญาตรี: บริหารธุรกิจบัณฑิต (บธ.บ.)", major: "สาขาวิชา: ระบบสารสนเทศทางคอมพิวเตอร์", inst: "มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา", logo: "/03_photo/icon/ล้านนาเชียงราย.webp" }
                 ],
                 email: "anupol.j@cvc.ac.th",
                 tel: "053-713036 ต่อ 114"
@@ -81,7 +81,7 @@
                 nick: "ครูหลิน",
                 name: "นางสาวรสธร หลวงตา",
                 role: "ครูพิเศษสอน",
-                img: "03_photo/3.3_teacher/removebg_ครูรสธร.webp",
+                img: "/03_photo/3.3_teacher/removebg_ครูรสธร.webp",
                 link: "index.php?click=4_rodsathon",
                 yt: "https://www.youtube.com/@t-rodsathon/videos",
                 skills: [
@@ -94,7 +94,7 @@
                     "อินเทอร์เน็ตของสรรพสิ่ง (IoT) เบื้องต้น"
                 ],
                 education: [
-                    { degree: "ปริญญาตรี: วิทยาศาสตรบัณฑิต (วท.บ.)", major: "สาขาวิชา: เทคโนโลยีสารสนเทศ", inst: "มหาวิทยาลัยราชมงคลล้านนาเชียงราย", logo: "03_photo/icon/inst_rmutl.webp" }
+                    { degree: "ปริญญาตรี: วิทยาศาสตรบัณฑิต (วท.บ.)", major: "สาขาวิชา: เทคโนโลยีสารสนเทศ", inst: "มหาวิทยาลัยราชมงคลล้านนาเชียงราย", logo: "/03_photo/icon/inst_rmutl.webp" }
                 ],
                 email: "rodsathon_rt@cvc.ac.th",
                 tel: "082-091-5771"
@@ -105,13 +105,13 @@
                 nick: "ครูชาย",
                 name: "นายสงกรานต์ สุนทรปฏิคม",
                 role: "ครูพิเศษสอน",
-                img: "03_photo/3.3_teacher/crop_ครูชายREG.webp",
+                img: "/03_photo/3.3_teacher/crop_ครูชายREG.webp",
                 link: "index.php?click=6_songkarn",
                 yt: null,
                 skills: ["Motion Graphics", "UX / UI Design", "Branding", "Arduino", "Python Programming"],
                 education: [
-                    { degree: "ปริญญาตรี: นิเทศศาสตรบัณฑิต (นศ.บ.)", major: "สาขาวิชา: การจัดการโฆษณา", inst: "มหาวิทยาลัยกรุงเทพ", logo: "03_photo/icon/ม.กรุงเทพ.webp" },
-                    { degree: "ปริญญาตรี: บริหารธุรกิจบัณฑิต (บธ.บ.)", major: "สาขาวิชา: คอมพิวเตอร์ธุรกิจ", inst: "สถาบันวิทยาการจัดการแห่งแปซิฟิค", logo: "03_photo/icon/สถาบันวิทยาการจัดการแห่งแปซิฟิค.webp" }
+                    { degree: "ปริญญาตรี: นิเทศศาสตรบัณฑิต (นศ.บ.)", major: "สาขาวิชา: การจัดการโฆษณา", inst: "มหาวิทยาลัยกรุงเทพ", logo: "/03_photo/icon/ม.กรุงเทพ.webp" },
+                    { degree: "ปริญญาตรี: บริหารธุรกิจบัณฑิต (บธ.บ.)", major: "สาขาวิชา: คอมพิวเตอร์ธุรกิจ", inst: "สถาบันวิทยาการจัดการแห่งแปซิฟิค", logo: "/03_photo/icon/สถาบันวิทยาการจัดการแห่งแปซิฟิค.webp" }
                 ],
                 email: "songkran@cvc.ac.th",
                 tel: "053-713036 ต่อ 114"
@@ -122,12 +122,12 @@
                 nick: "ครูรุจ",
                 name: "นายสุเมธ สู้ศึก",
                 role: "ครูผู้ช่วย",
-                img: "03_photo/3.3_teacher/Crop2ครูรุจ - 1 - แก้ไขแล้ว.png",
+                img: "/03_photo/3.3_teacher/Crop2ครูรุจ - 1 - แก้ไขแล้ว.webp",
                 link: "index.php?click=7_sumaet",
                 yt: null,
                 skills: ["Microsoft Office", "Network System", "Data Analytics", "Object-Oriented Programming", "Google Applications"],
                 education: [
-                    { degree: "ปริญญาตรี: เทคโนโลยีบัณฑิต (ทล.บ.)", major: "สาขาวิชา: คอมพิวเตอร์ธุรกิจ", inst: "วิทยาลัยอาชีวศึกษาขอนแก่น", logo: "03_photo/icon/วิทยาลัยอาชีวศึกษาขอนแก่น.webp" }
+                    { degree: "ปริญญาตรี: เทคโนโลยีบัณฑิต (ทล.บ.)", major: "สาขาวิชา: คอมพิวเตอร์ธุรกิจ", inst: "วิทยาลัยอาชีวศึกษาขอนแก่น", logo: "/03_photo/icon/วิทยาลัยอาชีวศึกษาขอนแก่น.webp" }
                 ],
                 email: "sumet.s@cvc.ac.th",
                 tel: "053-713036 ต่อ 114"
@@ -138,13 +138,13 @@
                 nick: "ครูเอก",
                 name: "นายกฤษณวิชญ์ เยาว์ธานี",
                 role: "ครูพิเศษสอน",
-                img: "03_photo/3.3_teacher/crop2_เอก03.webp",
+                img: "/03_photo/3.3_teacher/crop2_เอก03.webp",
                 link: "index.php?click=8_Kritsanawich",
                 yt: null,
                 skills: ["Digital Literacy", "Digital Information Retrieval", "Computer S/W H/W & Maintenance"],
                 education: [
-                    { degree: "ปริญญาโท: การศึกษามหาบัณฑิต (กศ.ม.)", major: "สาขาวิชา: การบริหารการศึกษา", inst: "มหาวิทยาลัยพะเยา", logo: "03_photo/icon/มอพะเยา.webp" },
-                    { degree: "ปริญญาตรี: ศิลปศาสตรบัณฑิต (ศศ.บ.)", major: "สาขาวิชา: สารสนเทศศาสตร์", inst: "มหาวิทยาลัยสุโขทัยธรรมาธิราช", logo: "03_photo/icon/สุโขทัยธรรมาธิราช.webp" }
+                    { degree: "ปริญญาโท: การศึกษามหาบัณฑิต (กศ.ม.)", major: "สาขาวิชา: การบริหารการศึกษา", inst: "มหาวิทยาลัยพะเยา", logo: "/03_photo/icon/มอพะเยา.webp" },
+                    { degree: "ปริญญาตรี: ศิลปศาสตรบัณฑิต (ศศ.บ.)", major: "สาขาวิชา: สารสนเทศศาสตร์", inst: "มหาวิทยาลัยสุโขทัยธรรมาธิราช", logo: "/03_photo/icon/สุโขทัยธรรมาธิราช.webp" }
                 ],
                 email: "Krissanawit@cvc.ac.th",
                 tel: "053-713036 ต่อ 114"
