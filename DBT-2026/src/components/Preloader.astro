@@ -1,5 +1,5 @@
 ---
-// Preloader Component for Astro - Real Dynamic Asset Tracking
+// Preloader Component for Astro - Intelligent Critical Asset Preloader
 ---
 
 <style is:global>
@@ -84,12 +84,12 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 1.25rem !important;
     will-change: transform, opacity !important;
 }
 
 .preloader-logo-img {
-    height: 90px !important;
+    height: 88px !important;
     width: auto !important;
     object-fit: contain !important;
     filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.75)) drop-shadow(0 0 45px rgba(147, 51, 234, 0.4)) !important;
@@ -131,7 +131,7 @@
     background: linear-gradient(90deg, #9333ea 0%, #c084fc 50%, #38bdf8 100%) !important;
     box-shadow: 0 0 10px rgba(192, 132, 252, 0.8) !important;
     border-radius: 999px !important;
-    transition: width 0.1s linear !important;
+    transition: width 0.08s linear !important;
     will-change: width !important;
 }
 
@@ -170,7 +170,7 @@
     <canvas id="preloader-canvas"></canvas>
     <div id="preloader-content">
         <div class="preloader-logo-wrapper">
-            <img src="/02_design/DBTLOGO.webp" alt="DBT Logo" class="preloader-logo-img" width="90" height="90">
+            <img src="/02_design/DBTLOGO.webp" alt="DBT Logo" class="preloader-logo-img" width="88" height="88">
         </div>
         <div id="preloader-counter">0%</div>
         <div class="preloader-progress-track">
@@ -275,90 +275,115 @@
                 }
                 if (window.ScrollTrigger) window.ScrollTrigger.refresh();
             }, 700);
-        }, 220);
+        }, 180);
     }
 
-    // Dynamic Image & Asset Loader Tracking
-    var loadedCount = 0;
-    var totalCount = 0;
-    var currentPercent = 0;
-    var targetPercent = 0;
-    var trackedImages = new Set();
+    // Tracking Critical / Above-the-fold Assets
+    var loadedCritical = 0;
+    var totalCritical = 0;
+    var trackedSet = new Set();
 
-    function updateProgress() {
-        if (totalCount > 0) {
-            targetPercent = Math.min(100, Math.round((loadedCount / totalCount) * 100));
-        } else {
-            targetPercent = 100;
+    function onCriticalAssetDone() {
+        loadedCritical++;
+    }
+
+    function trackCriticalImage(img) {
+        if (!img || trackedSet.has(img)) return;
+
+        // Skip lazy images that are far down the page (they load on scroll)
+        if (img.getAttribute('loading') === 'lazy') {
+            var rect = img.getBoundingClientRect();
+            if (rect.top > (window.innerHeight || 800) * 1.5 || (rect.bottom === 0 && rect.top === 0)) {
+                return;
+            }
         }
-    }
 
-    function onAssetDone() {
-        loadedCount++;
-        updateProgress();
-    }
+        trackedSet.add(img);
+        totalCritical++;
 
-    function trackImage(img) {
-        if (!img || trackedImages.has(img)) return;
-        trackedImages.add(img);
-        totalCount++;
-
-        // If image is already cached/complete
         if (img.complete && img.naturalWidth !== 0) {
-            onAssetDone();
+            onCriticalAssetDone();
         } else {
-            img.addEventListener('load', onAssetDone, { once: true });
-            img.addEventListener('error', onAssetDone, { once: true });
+            img.addEventListener('load', onCriticalAssetDone, { once: true });
+            img.addEventListener('error', onCriticalAssetDone, { once: true });
         }
     }
 
-    function scanImages() {
+    function scanCriticalImages() {
         var imgs = document.querySelectorAll('img');
         for (var i = 0; i < imgs.length; i++) {
-            trackImage(imgs[i]);
+            trackCriticalImage(imgs[i]);
         }
     }
 
-    // Initial scan of already parsed images
-    scanImages();
+    scanCriticalImages();
 
-    // Secondary scan when DOM is fully ready to catch any remaining images
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', scanImages);
+        document.addEventListener('DOMContentLoaded', scanCriticalImages);
     }
 
     // Font readiness tracking
     if (document.fonts && document.fonts.ready) {
-        totalCount++;
+        totalCritical++;
         document.fonts.ready.then(function() {
-            onAssetDone();
+            onCriticalAssetDone();
         }).catch(function() {
-            onAssetDone();
+            onCriticalAssetDone();
         });
     }
 
-    // Smooth RAF Interpolator for Counter (Eases smoothly towards targetPercent)
-    function tickProgress() {
+    // Smooth Interpolator with Minimum Duration (1.1s) and Safety Cap (2.6s)
+    var startTime = performance.now();
+    var minDuration = 1100; // minimum smooth animation time in ms
+    var maxSafetyCap = 2600; // maximum safety timeout in ms
+    var currentDisplay = 0;
+
+    function tick() {
         if (isEnded) return;
+        var now = performance.now();
+        var elapsed = now - startTime;
 
-        // If target is ahead, increment with smooth interpolation
-        if (currentPercent < targetPercent) {
-            var step = Math.max(1, Math.ceil((targetPercent - currentPercent) * 0.12));
-            currentPercent = Math.min(targetPercent, currentPercent + step);
+        // Normalized time progress (0 to 1)
+        var timeProgress = Math.min(1, elapsed / minDuration);
+        var timeEased = 1 - Math.pow(1 - timeProgress, 3); // cubic ease-out
 
-            if (counterEl) counterEl.textContent = currentPercent + '%';
-            if (progressBar) progressBar.style.width = currentPercent + '%';
+        // Real asset progress (0 to 1)
+        var assetProgress = totalCritical > 0 ? (loadedCritical / totalCritical) : 1;
+
+        // Combine: Can only reach 100% when timeEased >= 1 AND (assets are done OR safety cap reached)
+        var combinedTarget = 0;
+        if (elapsed >= maxSafetyCap || (assetProgress >= 1 && timeProgress >= 1)) {
+            combinedTarget = 100;
+        } else {
+            // Smooth blend: progress tracks time smoothly while scaling with asset readiness
+            var basePercent = timeEased * 98;
+            combinedTarget = Math.min(98, Math.floor(basePercent * Math.max(0.3, assetProgress)));
         }
 
-        // When all tracked assets are resolved and visual counter reached 100%
-        if (currentPercent >= 100 && loadedCount >= totalCount) {
+        // Smooth step towards target
+        if (currentDisplay < combinedTarget) {
+            var step = Math.max(1, Math.ceil((combinedTarget - currentDisplay) * 0.15));
+            currentDisplay = Math.min(combinedTarget, currentDisplay + step);
+
+            if (counterEl) counterEl.textContent = currentDisplay + '%';
+            if (progressBar) progressBar.style.width = currentDisplay + '%';
+        }
+
+        if (currentDisplay >= 100) {
             completePreloader();
             return;
         }
 
-        requestAnimationFrame(tickProgress);
+        requestAnimationFrame(tick);
     }
 
-    requestAnimationFrame(tickProgress);
+    requestAnimationFrame(tick);
+
+    // Absolute fallback safety guard
+    setTimeout(function() {
+        if (!isEnded) {
+            completePreloader();
+        }
+    }, maxSafetyCap + 300);
 })();
 </script>
