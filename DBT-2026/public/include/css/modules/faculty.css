@@ -770,25 +770,27 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        padding: 4px 16px;
+        padding: 0 16px;
         gap: 6px;
         text-align: center;
-        max-height: calc(100vh - 140px);
         box-sizing: border-box;
+        position: relative;
+        z-index: 5;
     }
 
     .fp-left-flank {
         align-items: center;
         text-align: center;
         margin-bottom: 0;
+        z-index: 6;
     }
 
     .fp-nickname-badge {
         padding: 3px 12px;
         font-size: 12px;
-        margin-bottom: 4px;
+        margin-bottom: 3px;
     }
 
     .fp-fullname-heading {
@@ -804,24 +806,31 @@
 
     .fp-center-portrait-stage {
         order: 0;
-        flex: 1;
+        flex: 1 1 auto;
         width: 100%;
         height: auto;
-        max-height: 44vh;
+        min-height: 280px;
+        max-height: 52vh;
         display: flex;
         align-items: flex-end;
         justify-content: center;
-        margin: 0;
-        overflow: hidden;
+        margin: -2px auto 0;
+        overflow: visible;
+        z-index: 5;
     }
 
     .fp-pure-cutout-img {
         height: 100%;
-        max-height: clamp(160px, 34vh, 42vh);
+        min-height: 270px;
+        max-height: clamp(270px, 48vh, 440px);
         width: auto;
+        max-width: min(90vw, 380px);
         object-fit: contain;
+        object-position: bottom center;
         display: block;
-        filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.12));
+        filter: drop-shadow(0 18px 32px rgba(15, 23, 42, 0.2));
+        transform: scale(1.08);
+        transform-origin: bottom center;
     }
 
     .fp-right-flank {
@@ -1117,31 +1126,38 @@
     /* Special Adaptive Scaling for Short Screen Heights (e.g. iPhone SE, landscape phones) */
     @media (max-height: 740px) {
         .fp-top-bar {
-            padding-top: 86px !important;
+            padding-top: 68px !important;
             padding-bottom: 2px !important;
         }
         .fp-fullname-heading {
-            font-size: 18px !important;
+            font-size: 19px !important;
         }
         .fp-role-text {
-            font-size: 11px !important;
+            font-size: 11.5px !important;
         }
         .fp-main-stage-container {
             gap: 2px !important;
+            padding: 0 12px !important;
+        }
+        .fp-center-portrait-stage {
+            min-height: 240px !important;
+            max-height: 50vh !important;
         }
         .fp-pure-cutout-img {
-            max-height: clamp(110px, 23vh, 155px) !important;
+            min-height: 240px !important;
+            max-height: clamp(240px, 48vh, 360px) !important;
+            transform: scale(1.05) !important;
         }
         .fp-skills-container {
-            gap: 2px !important;
+            gap: 3px !important;
         }
         .fp-skill-chip {
-            font-size: 10px !important;
-            padding: 2px 6px !important;
+            font-size: 10.5px !important;
+            padding: 2px 7px !important;
         }
         .fp-btn-modal-open {
-            padding: 5px 14px !important;
-            font-size: 11.5px !important;
+            padding: 6px 16px !important;
+            font-size: 12px !important;
         }
         .fp-bottom-rail-container {
             padding: 2px 6px 4px !important;
