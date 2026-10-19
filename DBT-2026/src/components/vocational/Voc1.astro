@@ -8,8 +8,14 @@
 <script is:inline>
 (function() {
     function initAll() {
-        if (typeof window.initMwgHeroSection === 'function') {
-            window.initMwgHeroSection();
+        if (typeof window.whenPreloaderDone === 'function') {
+            window.whenPreloaderDone(function() {
+                if (typeof window.initMwgHeroSection === 'function') {
+                    window.initMwgHeroSection(true);
+                }
+            });
+        } else if (typeof window.initMwgHeroSection === 'function') {
+            window.initMwgHeroSection(true);
         }
     }
     if (document.readyState === 'loading') {
@@ -799,4 +805,21 @@ window.initMwgHeroSection = function(forceReinit = false) {
         updateDeckLayout(activeIndex, { animate: false });
     }, 400);
 };
+
+// Immediate bottom auto-initialization synchronized with Preloader
+function startMwgHero() {
+    if (typeof window.whenPreloaderDone === 'function') {
+        window.whenPreloaderDone(() => initMwgHeroSection(true));
+    } else if (document.getElementById('preloader-overlay')) {
+        window.addEventListener('preloaderComplete', () => initMwgHeroSection(true), { once: true });
+    } else {
+        initMwgHeroSection(true);
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startMwgHero);
+} else {
+    startMwgHero();
+}
 </script>

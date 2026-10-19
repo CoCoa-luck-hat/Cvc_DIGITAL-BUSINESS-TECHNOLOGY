@@ -517,72 +517,35 @@ function bindCursorHovers() {
 }
 
 /**
- * 100% Authentic Lama Lama (js-loader / ll-loader) Preloader Sequence
+/**
+ * Authentic Preloader & Page Entrance Synchronization Engine
  */
 function initPreloader() {
-    const preloader = document.querySelector(".js-loader") || document.getElementById("preloader");
-    if (!preloader) {
-        triggerHeroReveal();
-        return;
-    }
-
-    const counter = preloader.querySelector(".js-progress") || document.getElementById("preloadCounter");
-    const loaderData = { progress: 0 };
-
-    const tl = gsap.timeline({
-        onComplete: () => {
-            finishPreloader();
-        }
-    });
-
-    tl.to(loaderData, {
-        progress: 100,
-        duration: 1.5,
-        ease: "power2.inOut",
-        onUpdate: () => {
-            if (counter) counter.innerText = Math.round(loaderData.progress);
-        }
-    });
-
-    function finishPreloader(isSkipped = false) {
-        tl.kill();
-
-        window.removeEventListener("keydown", handleSkipKeys);
-        preloader.removeEventListener("click", handlePreloaderClick);
-
-        // Smooth Opacity Fade Out (1-to-1 with lamalama.com exit)
-        gsap.to(preloader, {
-            opacity: 0,
-            duration: isSkipped ? 0.35 : 0.65,
-            ease: "power2.out",
-            onComplete: () => {
-                preloader.remove();
-                document.body.classList.remove("preloader-active");
-                triggerHeroReveal();
-            }
+    if (typeof window.whenPreloaderDone === 'function') {
+        window.whenPreloaderDone(() => {
+            triggerHeroReveal();
         });
+    } else if (document.getElementById('preloader-overlay')) {
+        window.addEventListener('preloaderComplete', () => {
+            triggerHeroReveal();
+        }, { once: true });
+    } else {
+        triggerHeroReveal();
     }
-
-    // Skip Handlers
-    function handleSkipKeys(e) {
-        if (e.key === " " || e.key === "Enter" || e.key === "Escape") {
-            e.preventDefault();
-            finishPreloader(true);
-        }
-    }
-
-    function handlePreloaderClick() {
-        finishPreloader(true);
-    }
-
-    window.addEventListener("keydown", handleSkipKeys);
-    preloader.addEventListener("click", handlePreloaderClick);
 }
 
-
+// BFCache (Back/Forward Navigation) Safety Recovery for Navbar & Hero
+window.addEventListener("pageshow", (e) => {
+    if (e.persisted) {
+        const navbar = document.getElementById("main-navbar-wrapper");
+        if (navbar && typeof gsap !== 'undefined') {
+            gsap.set(navbar, { opacity: 1, y: 0 });
+        }
+    }
+});
 
 /**
- * 100% Authentic Lama Lama Hero Reveal Sequence
+ * 100% Authentic Hero Reveal & Global Navbar Entrance Sequence
  */
 function triggerHeroReveal() {
     const heroVideo = document.querySelector(".home-hero-video");
@@ -592,7 +555,15 @@ function triggerHeroReveal() {
     const cta = document.getElementById("heroCtaGroup");
     const scrollIndicator = document.getElementById("heroScrollIndicator");
 
-    // 1. Hero Video 3D Camera Zoom Reveal & Mobile Low-Power-Mode Playback Wake
+    // 1. Global Navbar Spring Drop Entrance (Synchronized across all pages on curtain split)
+    if (navbar) {
+        gsap.fromTo(navbar,
+            { y: -60, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.95, ease: "power4.out", delay: 0.05, onComplete: () => gsap.set(navbar, { clearProps: "transform,y" }) }
+        );
+    }
+
+    // 2. Hero Video 3D Camera Zoom Reveal & Mobile Low-Power-Mode Playback Wake
     if (heroVideo) {
         gsap.fromTo(heroVideo,
             { scale: 1.15, transformOrigin: "center center" },
@@ -614,14 +585,6 @@ function triggerHeroReveal() {
                 });
             }
         }
-    }
-
-    // 2. Navbar Spring Drop Entrance
-    if (navbar) {
-        gsap.fromTo(navbar,
-            { y: -60, opacity: 0 },
-            { y: 0, opacity: 1, duration: 1.0, ease: "power4.out", delay: 0.15, onComplete: () => gsap.set(navbar, { clearProps: "transform,y" }) }
-        );
     }
 
     // 3. Masked 3D Line Text Reveal

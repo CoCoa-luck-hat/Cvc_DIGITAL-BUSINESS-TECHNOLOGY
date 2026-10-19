@@ -136,6 +136,17 @@ const ogImageUrl = '/02_design/DBTLOGO.webp';
         if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && typeof Observer !== 'undefined') {
             gsap.registerPlugin(ScrollTrigger, Observer);
         }
+        if (typeof window.whenPreloaderDone !== 'function') {
+            window.whenPreloaderDone = function(cb) {
+                if (typeof cb === 'function') {
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', cb);
+                    } else {
+                        cb();
+                    }
+                }
+            };
+        }
     </script>
 
     <!-- Lenis & Core Javascript -->

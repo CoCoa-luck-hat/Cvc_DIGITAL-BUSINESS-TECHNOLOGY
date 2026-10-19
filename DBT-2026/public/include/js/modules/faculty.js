@@ -721,28 +721,30 @@
         startAutoCycle();
 
         // 7. Cinematic Staggered Fade-in Entrance Choreography
-        function playFacultyEntranceAnimation() {
-            if (typeof gsap === 'undefined') return;
+        // Set initial hidden state immediately with subtle depth coordinates
+        const topBar = document.getElementById("fp-top-bar");
+        const backdrop = document.getElementById("fp-backdrop-name");
+        const portrait = document.getElementById("fp-portrait-box");
+        const leftFlank = document.getElementById("fp-left-flank");
+        const rightFlank = document.getElementById("fp-right-flank");
+        const bottomRail = document.getElementById("fp-bottom-rail");
+        const ambientGlow = document.getElementById("fp-ambient-glow");
 
-            const topBar = document.getElementById("fp-top-bar");
-            const backdrop = document.getElementById("fp-backdrop-name");
-            const portrait = document.getElementById("fp-portrait-box");
-            const leftFlank = document.getElementById("fp-left-flank");
-            const rightFlank = document.getElementById("fp-right-flank");
-            const bottomRail = document.getElementById("fp-bottom-rail");
-            const ambientGlow = document.getElementById("fp-ambient-glow");
-
-            const tl = gsap.timeline({
-                defaults: { ease: "power3.out" }
-            });
-
-            // Set initial hidden state with subtle depth coordinates
+        if (typeof gsap !== 'undefined') {
             gsap.set(topBar, { opacity: 0, y: -20 });
             gsap.set(backdrop, { opacity: 0, scale: 0.88, y: 35 });
             gsap.set(portrait, { opacity: 0, scale: 0.92, y: 45 });
             gsap.set([leftFlank, rightFlank], { opacity: 0, y: 30 });
             gsap.set(bottomRail, { opacity: 0, y: 25 });
             if (ambientGlow) gsap.set(ambientGlow, { opacity: 0, scale: 0.8 });
+        }
+
+        function playFacultyEntranceAnimation() {
+            if (typeof gsap === 'undefined') return;
+
+            const tl = gsap.timeline({
+                defaults: { ease: "power3.out" }
+            });
 
             tl.to(topBar, {
                 opacity: 1,
@@ -778,7 +780,14 @@
             }
         }
 
-        playFacultyEntranceAnimation();
+        // Trigger entrance animation exactly when preloader curtain splits open
+        if (typeof window.whenPreloaderDone === 'function') {
+            window.whenPreloaderDone(() => playFacultyEntranceAnimation());
+        } else if (document.getElementById('preloader-overlay')) {
+            window.addEventListener('preloaderComplete', () => playFacultyEntranceAnimation(), { once: true });
+        } else {
+            playFacultyEntranceAnimation();
+        }
 
         // BFCache (Back/Forward Navigation) Instant Safety Recovery
         window.addEventListener("pageshow", (e) => {

@@ -337,20 +337,17 @@
         function playGraduateEntranceAnimation() {
             if (typeof gsap === 'undefined') return;
 
-            const title = document.querySelector(".split-title");
-            const desc = document.querySelector(".split-desc");
-            const filtersBox = document.querySelector(".split-filters-box");
-            const actionBar = document.querySelector(".split-action-bar");
-            const cinemaStage = document.getElementById("split-cinema-stage");
-            const thumbDrawer = document.getElementById("split-thumb-drawer");
-            const thumbItems = document.querySelectorAll(".split-thumb-item");
-            const glow = document.querySelector(".split-ambient-glow");
+        // Set initial hidden coordinates immediately so elements are primed behind curtain
+        const title = document.querySelector(".split-title");
+        const desc = document.querySelector(".split-desc");
+        const filtersBox = document.querySelector(".split-filters-box");
+        const actionBar = document.querySelector(".split-action-bar");
+        const cinemaStage = document.getElementById("split-cinema-stage");
+        const thumbDrawer = document.getElementById("split-thumb-drawer");
+        const thumbItems = document.querySelectorAll(".split-thumb-item");
+        const glow = document.querySelector(".split-ambient-glow");
 
-            const tl = gsap.timeline({
-                defaults: { ease: "power3.out" }
-            });
-
-            // Set initial hidden coordinates
+        if (typeof gsap !== 'undefined') {
             if (title) gsap.set(title, { opacity: 0, y: -25 });
             if (desc) gsap.set(desc, { opacity: 0, y: 15 });
             if (filtersBox) gsap.set(filtersBox, { opacity: 0, y: 25 });
@@ -359,6 +356,14 @@
             if (thumbDrawer) gsap.set(thumbDrawer, { opacity: 0, y: 25 });
             if (thumbItems.length) gsap.set(thumbItems, { opacity: 0, scale: 0.9, y: 15 });
             if (glow) gsap.set(glow, { opacity: 0, scale: 0.85 });
+        }
+
+        function playGraduateEntranceAnimation() {
+            if (typeof gsap === 'undefined') return;
+
+            const tl = gsap.timeline({
+                defaults: { ease: "power3.out" }
+            });
 
             if (title) {
                 tl.to(title, {
@@ -428,7 +433,14 @@
             }
         }
 
-        playGraduateEntranceAnimation();
+        // Trigger entrance animation exactly when preloader curtain splits open
+        if (typeof window.whenPreloaderDone === 'function') {
+            window.whenPreloaderDone(() => playGraduateEntranceAnimation());
+        } else if (document.getElementById('preloader-overlay')) {
+            window.addEventListener('preloaderComplete', () => playGraduateEntranceAnimation(), { once: true });
+        } else {
+            playGraduateEntranceAnimation();
+        }
 
         // BFCache (Back/Forward Navigation) Instant Safety Recovery
         window.addEventListener("pageshow", (e) => {

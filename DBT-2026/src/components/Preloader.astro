@@ -182,8 +182,24 @@
 
 <script is:inline>
 (function() {
+    // Global Preloader Synchronizer API
+    window.__PRELOADER_DONE__ = false;
+    window.whenPreloaderDone = function(callback) {
+        if (typeof callback !== 'function') return;
+        if (window.__PRELOADER_DONE__ || !document.getElementById('preloader-overlay')) {
+            callback();
+        } else {
+            window.addEventListener('preloaderComplete', function() {
+                callback();
+            }, { once: true });
+        }
+    };
+
     var overlay = document.getElementById('preloader-overlay');
-    if (!overlay) return;
+    if (!overlay) {
+        window.__PRELOADER_DONE__ = true;
+        return;
+    }
 
     // Lock body scroll during preloading
     document.body.style.overflow = 'hidden';
@@ -261,6 +277,10 @@
             if (curtainBottom) {
                 curtainBottom.style.transform = 'translateY(100%)';
             }
+
+            // Mark preloader done
+            window.__PRELOADER_DONE__ = true;
+            if (overlay) overlay.dataset.completed = 'true';
 
             // Unlock body scroll as curtain splits open
             document.body.style.overflow = '';

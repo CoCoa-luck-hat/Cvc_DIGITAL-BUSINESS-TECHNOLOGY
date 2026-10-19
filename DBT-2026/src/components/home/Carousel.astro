@@ -44,10 +44,16 @@ import ImageLoader from '../ImageLoader.astro';
                 }
             } catch(e) {}
 
-            // 2. Otherwise start video right when preloader curtain finishes
-            window.addEventListener('preloaderComplete', function() {
-                startVideo();
-            });
+            // 2. Start video right when preloader curtain finishes
+            if (typeof window.whenPreloaderDone === 'function') {
+                window.whenPreloaderDone(function() {
+                    startVideo();
+                });
+            } else {
+                window.addEventListener('preloaderComplete', function() {
+                    startVideo();
+                });
+            }
 
             // 3. Fallback: If user scrolls or after 2.5s, ensure video loads
             window.addEventListener('scroll', function() {

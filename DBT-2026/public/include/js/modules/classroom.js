@@ -239,25 +239,28 @@
         distributeTiles("all", false, true);
 
         // 4. Cinematic Staggered Fade-in Entrance Choreography
-        function playClassroomEntranceAnimation() {
-            if (typeof gsap === 'undefined') return;
+        // Set initial hidden states immediately so elements are primed behind curtain
+        const header = document.querySelector(".maj-header-wrap");
+        const filterContainer = document.querySelector(".maj-filter-bar-container");
+        const tiles = document.querySelectorAll(".maj-photo-tile");
+        const loadMore = document.getElementById("maj-load-more-wrap");
+        const glow = document.querySelector(".maj-ambient-glow");
 
-            const header = document.querySelector(".maj-header-wrap");
-            const filterContainer = document.querySelector(".maj-filter-bar-container");
-            const tiles = document.querySelectorAll(".maj-photo-tile");
-            const loadMore = document.getElementById("maj-load-more-wrap");
-            const glow = document.querySelector(".maj-ambient-glow");
-
-            const tl = gsap.timeline({
-                defaults: { ease: "power3.out" }
-            });
-
-            // Set initial hidden states
+        if (typeof gsap !== 'undefined') {
             if (header) gsap.set(header, { opacity: 0, y: -25 });
             if (filterContainer) gsap.set(filterContainer, { opacity: 0, y: 20, scale: 0.98 });
             if (tiles.length) gsap.set(tiles, { opacity: 0, y: 35, scale: 0.94 });
             if (loadMore) gsap.set(loadMore, { opacity: 0, y: 20 });
             if (glow) gsap.set(glow, { opacity: 0, scale: 0.8 });
+        }
+
+        // 4. Cinematic Staggered Fade-in Entrance Choreography
+        function playClassroomEntranceAnimation() {
+            if (typeof gsap === 'undefined') return;
+
+            const tl = gsap.timeline({
+                defaults: { ease: "power3.out" }
+            });
 
             if (header) {
                 tl.to(header, {
@@ -303,7 +306,14 @@
             }
         }
 
-        playClassroomEntranceAnimation();
+        // Trigger entrance animation exactly when preloader curtain splits open
+        if (typeof window.whenPreloaderDone === 'function') {
+            window.whenPreloaderDone(() => playClassroomEntranceAnimation());
+        } else if (document.getElementById('preloader-overlay')) {
+            window.addEventListener('preloaderComplete', () => playClassroomEntranceAnimation(), { once: true });
+        } else {
+            playClassroomEntranceAnimation();
+        }
 
         // BFCache (Back/Forward Navigation) Instant Safety Recovery
         window.addEventListener("pageshow", (e) => {
