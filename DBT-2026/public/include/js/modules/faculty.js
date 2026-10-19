@@ -723,11 +723,8 @@
         // 7. Cinematic Staggered Fade-in Entrance Choreography
         // Set initial hidden state immediately with subtle depth coordinates
         const topBar = document.getElementById("fp-top-bar");
-        const backdrop = document.getElementById("fp-backdrop-name");
-        const portrait = document.getElementById("fp-portrait-box");
-        const leftFlank = document.getElementById("fp-left-flank");
-        const rightFlank = document.getElementById("fp-right-flank");
-        const bottomRail = document.getElementById("fp-bottom-rail");
+        const backdrop = backdropName;
+        const portrait = portraitBox;
         const ambientGlow = document.getElementById("fp-ambient-glow");
 
         if (typeof gsap !== 'undefined') {

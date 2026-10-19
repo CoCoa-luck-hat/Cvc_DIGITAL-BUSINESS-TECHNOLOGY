@@ -144,7 +144,7 @@ const col2Items = galleryItems.slice(0, initialLimit).filter((_, idx) => idx % 3
                         const originalIdx = i * 3;
                         return (
                             <figure class="maj-photo-tile" onclick={`openCinematicLightbox(${originalIdx})`} data-idx={originalIdx} data-room={item.room} data-building={item.building}>
-                                <ImageLoader src={item.src} alt={item.caption} imgClass="maj-tile-img" aspectRatio="4/3" />
+                                <ImageLoader src={item.src} alt={item.caption} imgClass="maj-tile-img" />
                                 <div class="maj-hover-scrim">
                                     <div class="maj-hover-top-badges">
                                         <span class="maj-badge-building-tag"><i class="fas fa-map-marker-alt"></i> {item.buildingLabel}</span>
@@ -164,7 +164,7 @@ const col2Items = galleryItems.slice(0, initialLimit).filter((_, idx) => idx % 3
                         const originalIdx = i * 3 + 1;
                         return (
                             <figure class="maj-photo-tile" onclick={`openCinematicLightbox(${originalIdx})`} data-idx={originalIdx} data-room={item.room} data-building={item.building}>
-                                <ImageLoader src={item.src} alt={item.caption} imgClass="maj-tile-img" aspectRatio="4/3" />
+                                <ImageLoader src={item.src} alt={item.caption} imgClass="maj-tile-img" />
                                 <div class="maj-hover-scrim">
                                     <div class="maj-hover-top-badges">
                                         <span class="maj-badge-building-tag"><i class="fas fa-map-marker-alt"></i> {item.buildingLabel}</span>
@@ -184,7 +184,7 @@ const col2Items = galleryItems.slice(0, initialLimit).filter((_, idx) => idx % 3
                         const originalIdx = i * 3 + 2;
                         return (
                             <figure class="maj-photo-tile" onclick={`openCinematicLightbox(${originalIdx})`} data-idx={originalIdx} data-room={item.room} data-building={item.building}>
-                                <ImageLoader src={item.src} alt={item.caption} imgClass="maj-tile-img" aspectRatio="4/3" />
+                                <ImageLoader src={item.src} alt={item.caption} imgClass="maj-tile-img" />
                                 <div class="maj-hover-scrim">
                                     <div class="maj-hover-top-badges">
                                         <span class="maj-badge-building-tag"><i class="fas fa-map-marker-alt"></i> {item.buildingLabel}</span>

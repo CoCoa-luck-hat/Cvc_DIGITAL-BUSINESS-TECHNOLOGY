@@ -165,20 +165,35 @@ const track2Items = [...dbtRow2, ...dbtRow2, ...dbtRow2, ...dbtRow2];
 
 .dbt-avatar-ring {
     position: relative;
-    border-radius: 9999px;
-    padding: 3px;
-    background: linear-gradient(135deg, #7c3aed 0%, #5f2d8c 50%, #8b5cf6 100%);
-    box-shadow: 0 4px 12px rgba(95, 45, 140, 0.25);
-    flex-shrink: 0;
+    width: 3.75rem !important;
+    height: 3.75rem !important;
+    min-width: 3.75rem !important;
+    min-height: 3.75rem !important;
+    max-width: 3.75rem !important;
+    max-height: 3.75rem !important;
+    border-radius: 9999px !important;
+    padding: 2.5px !important;
+    background: linear-gradient(135deg, #7c3aed 0%, #5f2d8c 50%, #8b5cf6 100%) !important;
+    box-shadow: 0 4px 12px rgba(95, 45, 140, 0.25) !important;
+    flex-shrink: 0 !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+
+.dbt-avatar-ring .img-loader-wrapper {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 9999px !important;
+    background-color: transparent !important;
 }
 
 .dbt-avatar-img {
-    width: 3.75rem;
-    height: 3.75rem;
-    border-radius: 9999px;
-    object-fit: cover;
-    border: 2px solid #ffffff;
-    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 9999px !important;
+    object-fit: cover !important;
+    border: 2px solid #ffffff !important;
+    display: block !important;
 }
 
 .dbt-quote-watermark {
@@ -230,13 +245,9 @@ const track2Items = [...dbtRow2, ...dbtRow2, ...dbtRow2, ...dbtRow2];
                             <!-- Student Profile Header -->
                             <div class="flex items-center gap-3.5 mb-4 relative z-10">
                                 <div class="dbt-avatar-ring group-hover:scale-105 transition-transform duration-300">
-                                    <ImageLoader src={rev.img} alt={rev.name} imgClass="dbt-avatar-img" class="w-[3.75rem] h-[3.75rem] rounded-full overflow-hidden" aspectRatio="1/1" />
+                                    <ImageLoader src={rev.img} alt={rev.name} imgClass="dbt-avatar-img" class="w-full h-full rounded-full overflow-hidden" aspectRatio="1/1" />
                                 </div>
                                 <div class="min-w-0 pr-8" style="padding-left: 8px;">
-                                    <span class="inline-flex items-center gap-1.5 text-[10px] font-bold px-2 py-0.5 rounded-full bg-violet-50 text-primary border border-violet-200/80 mb-1">
-                                        <i class={`fas ${rev.icon} text-[9px]`}></i>
-                                        {rev.badge}
-                                    </span>
                                     <h3 class="text-sm sm:text-base font-bold text-gray-900 truncate leading-snug group-hover:text-primary transition-colors">
                                         {rev.name}
                                     </h3>
@@ -277,13 +288,9 @@ const track2Items = [...dbtRow2, ...dbtRow2, ...dbtRow2, ...dbtRow2];
                             <!-- Student Profile Header -->
                             <div class="flex items-center gap-3.5 mb-4 relative z-10">
                                 <div class="dbt-avatar-ring group-hover:scale-105 transition-transform duration-300">
-                                    <ImageLoader src={rev.img} alt={rev.name} imgClass="dbt-avatar-img" class="w-[3.75rem] h-[3.75rem] rounded-full overflow-hidden" aspectRatio="1/1" />
+                                    <ImageLoader src={rev.img} alt={rev.name} imgClass="dbt-avatar-img" class="w-full h-full rounded-full overflow-hidden" aspectRatio="1/1" />
                                 </div>
                                 <div class="min-w-0 pr-8" style="padding-left: 8px;">
-                                    <span class="inline-flex items-center gap-1.5 text-[10px] font-bold px-2 py-0.5 rounded-full bg-violet-50 text-primary border border-violet-200/80 mb-1">
-                                        <i class={`fas ${rev.icon} text-[9px]`}></i>
-                                        {rev.badge}
-                                    </span>
                                     <h3 class="text-sm sm:text-base font-bold text-gray-900 truncate leading-snug group-hover:text-primary transition-colors">
                                         {rev.name}
                                     </h3>

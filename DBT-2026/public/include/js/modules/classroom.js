@@ -170,7 +170,7 @@
                 figure.setAttribute("data-building", item.building);
 
                 figure.innerHTML = `
-                    <div class="img-loader-wrapper" style="aspect-ratio: 4/3;">
+                    <div class="img-loader-wrapper">
                         <div class="img-shimmer-wave" aria-hidden="true"></div>
                         <img src="${item.src}" alt="${item.caption}" class="img-loader-target maj-tile-img" loading="${i < 6 ? 'eager' : 'lazy'}" onload="this.parentElement && this.parentElement.classList.add('img-loaded')" onerror="this.parentElement && this.parentElement.classList.add('img-error')">
                     </div>

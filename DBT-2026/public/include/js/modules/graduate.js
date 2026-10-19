@@ -333,17 +333,11 @@
         // Initialize Filter & Cinema Stage on load
         filterGraduates(false);
 
-        // Cinematic Staggered Fade-in Entrance Choreography
-        function playGraduateEntranceAnimation() {
-            if (typeof gsap === 'undefined') return;
-
         // Set initial hidden coordinates immediately so elements are primed behind curtain
         const title = document.querySelector(".split-title");
         const desc = document.querySelector(".split-desc");
         const filtersBox = document.querySelector(".split-filters-box");
         const actionBar = document.querySelector(".split-action-bar");
-        const cinemaStage = document.getElementById("split-cinema-stage");
-        const thumbDrawer = document.getElementById("split-thumb-drawer");
         const thumbItems = document.querySelectorAll(".split-thumb-item");
         const glow = document.querySelector(".split-ambient-glow");
 

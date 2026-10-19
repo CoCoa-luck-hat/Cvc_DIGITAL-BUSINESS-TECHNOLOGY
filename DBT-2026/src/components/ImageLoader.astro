@@ -135,6 +135,10 @@ const containerStyle = [
     border-radius: inherit;
 }
 
+:global(.img-loader-wrapper.img-loaded) {
+    background-color: transparent !important;
+}
+
 :global(.img-loader-wrapper.img-loaded) .img-shimmer-wave {
     opacity: 0;
     pointer-events: none;
