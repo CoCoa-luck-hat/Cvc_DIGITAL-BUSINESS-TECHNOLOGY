@@ -1,14 +1,6 @@
 ---
-// Preloader Component for Astro
+// Preloader Component for Astro - Real Dynamic Asset Tracking
 ---
-
-<script is:inline>
-try {
-    if (sessionStorage.getItem('cvc_dbt_preloader_shown') === 'true') {
-        document.write('<style>#preloader-overlay{display:none!important;}</style>');
-    }
-} catch(e) {}
-</script>
 
 <style is:global>
 #preloader-overlay {
@@ -69,7 +61,7 @@ try {
     height: 100% !important;
     z-index: 20 !important;
     pointer-events: none !important;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.35s ease;
 }
 
 #preloader-content {
@@ -84,31 +76,7 @@ try {
     padding: 2rem !important;
     text-align: center !important;
     will-change: transform, opacity !important;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-#preloader-counter {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    font-family: 'Prompt', sans-serif !important;
-    font-size: 3.75rem !important;
-    font-weight: 700 !important;
-    color: #ffffff !important;
-    letter-spacing: -0.02em !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    line-height: 1 !important;
-    white-space: nowrap !important;
-    z-index: 35 !important;
-    transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-@media (max-width: 640px) {
-    #preloader-counter {
-        font-size: 2.85rem !important;
-    }
+    transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 .preloader-logo-wrapper {
@@ -116,44 +84,81 @@ try {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    margin-bottom: 1.25rem !important;
-    opacity: 0;
-    transform: scale(0.65);
-    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    margin-bottom: 1.5rem !important;
     will-change: transform, opacity !important;
 }
 
 .preloader-logo-img {
-    height: 110px !important;
+    height: 90px !important;
     width: auto !important;
     object-fit: contain !important;
-    filter: drop-shadow(0 0 25px rgba(139, 92, 246, 0.9)) drop-shadow(0 0 50px rgba(95, 45, 140, 0.5)) !important;
+    filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.75)) drop-shadow(0 0 45px rgba(147, 51, 234, 0.4)) !important;
+    animation: preloaderLogoPulse 2.4s ease-in-out infinite alternate !important;
 }
 
-@media (max-width: 640px) {
-    .preloader-logo-img {
-        height: 85px !important;
-    }
+@keyframes preloaderLogoPulse {
+    0% { transform: scale(0.97); filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.6)); }
+    100% { transform: scale(1.02); filter: drop-shadow(0 0 28px rgba(168, 85, 247, 0.95)) drop-shadow(0 0 55px rgba(147, 51, 234, 0.5)); }
+}
+
+#preloader-counter {
+    font-family: 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-size: 3.25rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    letter-spacing: -0.02em !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.5) !important;
+}
+
+.preloader-progress-track {
+    width: 220px !important;
+    max-width: 70vw !important;
+    height: 3px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 999px !important;
+    margin: 1.25rem 0 1rem 0 !important;
+    overflow: hidden !important;
+    position: relative !important;
+}
+
+#preloader-progress-bar {
+    height: 100% !important;
+    width: 0%;
+    background: linear-gradient(90deg, #9333ea 0%, #c084fc 50%, #38bdf8 100%) !important;
+    box-shadow: 0 0 10px rgba(192, 132, 252, 0.8) !important;
+    border-radius: 999px !important;
+    transition: width 0.1s linear !important;
+    will-change: width !important;
 }
 
 #preloader-title {
     font-family: 'Prompt', sans-serif !important;
-    font-size: 1.35rem !important;
-    font-weight: 500 !important;
-    color: #f8f9fa !important;
-    letter-spacing: 0.05em !important;
+    font-size: 1.05rem !important;
+    font-weight: 400 !important;
+    color: #e2e8f0 !important;
+    letter-spacing: 0.04em !important;
     margin: 0 !important;
     padding: 0 !important;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(95, 45, 140, 0.4) !important;
+    opacity: 0.85 !important;
     white-space: nowrap !important;
-    opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 @media (max-width: 640px) {
+    .preloader-logo-img {
+        height: 72px !important;
+    }
+    #preloader-counter {
+        font-size: 2.6rem !important;
+    }
+    .preloader-progress-track {
+        width: 180px !important;
+    }
     #preloader-title {
-        font-size: 1.1rem !important;
+        font-size: 0.95rem !important;
     }
 }
 </style>
@@ -164,9 +169,12 @@ try {
     <div id="preloader-curtain-bottom"></div>
     <canvas id="preloader-canvas"></canvas>
     <div id="preloader-content">
+        <div class="preloader-logo-wrapper">
+            <img src="/02_design/DBTLOGO.webp" alt="DBT Logo" class="preloader-logo-img" width="90" height="90">
+        </div>
         <div id="preloader-counter">0%</div>
-        <div class="preloader-logo-wrapper" id="preloader-logo-box">
-            <img src="/02_design/DBTLOGO.webp" alt="DBT Logo" class="preloader-logo-img" width="110" height="110">
+        <div class="preloader-progress-track">
+            <div id="preloader-progress-bar"></div>
         </div>
         <h2 id="preloader-title">แผนกวิชาเทคโนโลยีธุรกิจดิจิทัล</h2>
     </div>
@@ -177,23 +185,11 @@ try {
     var overlay = document.getElementById('preloader-overlay');
     if (!overlay) return;
 
-    // Check session: if already shown in this tab session, dismiss instantly
-    try {
-        if (sessionStorage.getItem('cvc_dbt_preloader_shown') === 'true') {
-            overlay.style.display = 'none';
-            if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
-            document.body.style.overflow = '';
-            window.dispatchEvent(new CustomEvent('preloaderComplete'));
-            return;
-        }
-    } catch(e) {}
-
-    // Lock body scroll during intro
+    // Lock body scroll during preloading
     document.body.style.overflow = 'hidden';
 
     var counterEl = document.getElementById('preloader-counter');
-    var logoBox = document.getElementById('preloader-logo-box');
-    var titleEl = document.getElementById('preloader-title');
+    var progressBar = document.getElementById('preloader-progress-bar');
     var curtainTop = document.getElementById('preloader-curtain-top');
     var curtainBottom = document.getElementById('preloader-curtain-bottom');
     var canvas = document.getElementById('preloader-canvas');
@@ -202,21 +198,21 @@ try {
     var isEnded = false;
     var animFrame = null;
 
-    // Particle canvas background
+    // Ambient floating particles canvas
     if (canvas) {
         var ctx = canvas.getContext('2d');
         var w = (canvas.width = window.innerWidth);
         var h = (canvas.height = window.innerHeight);
 
         var particles = [];
-        for (var i = 0; i < 22; i++) {
+        for (var i = 0; i < 20; i++) {
             particles.push({
                 x: Math.random() * w,
                 y: Math.random() * h,
-                vx: (Math.random() - 0.5) * 0.7,
-                vy: (Math.random() - 0.5) * 0.7,
+                vx: (Math.random() - 0.5) * 0.6,
+                vy: (Math.random() - 0.5) * 0.6,
                 radius: Math.random() * 2 + 1,
-                alpha: Math.random() * 0.45 + 0.2
+                alpha: Math.random() * 0.4 + 0.15
             });
         }
 
@@ -239,35 +235,22 @@ try {
         animFrame = requestAnimationFrame(renderParticles);
     }
 
-    // Dismissal function: Split Curtains and Finish
+    // Dismissal function: Split Curtains and Reveal Page
     function completePreloader() {
         if (isEnded) return;
         isEnded = true;
 
         if (animFrame) cancelAnimationFrame(animFrame);
-        try {
-            sessionStorage.setItem('cvc_dbt_preloader_shown', 'true');
-        } catch(e) {}
 
-        // 1. Reveal logo and title
-        if (counterEl) {
-            counterEl.style.opacity = '0';
-            counterEl.style.transform = 'translate(-50%, -50%) scale(0.85)';
-        }
-        if (logoBox) {
-            logoBox.style.opacity = '1';
-            logoBox.style.transform = 'scale(1)';
-        }
-        if (titleEl) {
-            titleEl.style.opacity = '1';
-            titleEl.style.transform = 'translateY(0)';
-        }
+        // Ensure 100% is displayed
+        if (counterEl) counterEl.textContent = '100%';
+        if (progressBar) progressBar.style.width = '100%';
 
-        // 2. Pause slightly so user sees the glowing branding, then open curtains
+        // Smooth exit sequence
         setTimeout(function() {
             if (contentBox) {
                 contentBox.style.opacity = '0';
-                contentBox.style.transform = 'scale(0.95)';
+                contentBox.style.transform = 'scale(0.96)';
             }
             if (canvas) {
                 canvas.style.opacity = '0';
@@ -279,52 +262,103 @@ try {
                 curtainBottom.style.transform = 'translateY(100%)';
             }
 
-            // Restore body scroll right as curtain begins opening
+            // Unlock body scroll as curtain splits open
             document.body.style.overflow = '';
 
-            // Emit completion event for video and other components
+            // Notify page components (GSAP, videos, sliders)
             window.dispatchEvent(new CustomEvent('preloaderComplete'));
 
-            // Clean up DOM after transition finishes
+            // Remove overlay from DOM
             setTimeout(function() {
                 if (overlay && overlay.parentNode) {
                     overlay.parentNode.removeChild(overlay);
                 }
                 if (window.ScrollTrigger) window.ScrollTrigger.refresh();
             }, 700);
-        }, 350);
+        }, 220);
     }
 
-    // Counter animation (0% -> 100% over ~1250ms)
-    var startTime = performance.now();
-    var duration = 1250;
+    // Dynamic Image & Asset Loader Tracking
+    var loadedCount = 0;
+    var totalCount = 0;
+    var currentPercent = 0;
+    var targetPercent = 0;
+    var trackedImages = new Set();
 
-    function tickCounter(currentTime) {
-        if (isEnded) return;
-        var elapsed = currentTime - startTime;
-        var rawProgress = Math.min(1, elapsed / duration);
-        // Smooth ease-out cubic
-        var eased = 1 - Math.pow(1 - rawProgress, 3);
-        var currentPercent = Math.min(100, Math.floor(eased * 100));
-
-        if (counterEl) {
-            counterEl.textContent = currentPercent + '%';
-        }
-
-        if (rawProgress < 1) {
-            requestAnimationFrame(tickCounter);
+    function updateProgress() {
+        if (totalCount > 0) {
+            targetPercent = Math.min(100, Math.round((loadedCount / totalCount) * 100));
         } else {
-            completePreloader();
+            targetPercent = 100;
         }
     }
 
-    requestAnimationFrame(tickCounter);
+    function onAssetDone() {
+        loadedCount++;
+        updateProgress();
+    }
 
-    // Global Safety Fallback (3.5s max cap)
-    setTimeout(function() {
-        if (!isEnded) {
-            completePreloader();
+    function trackImage(img) {
+        if (!img || trackedImages.has(img)) return;
+        trackedImages.add(img);
+        totalCount++;
+
+        // If image is already cached/complete
+        if (img.complete && img.naturalWidth !== 0) {
+            onAssetDone();
+        } else {
+            img.addEventListener('load', onAssetDone, { once: true });
+            img.addEventListener('error', onAssetDone, { once: true });
         }
-    }, 3500);
+    }
+
+    function scanImages() {
+        var imgs = document.querySelectorAll('img');
+        for (var i = 0; i < imgs.length; i++) {
+            trackImage(imgs[i]);
+        }
+    }
+
+    // Initial scan of already parsed images
+    scanImages();
+
+    // Secondary scan when DOM is fully ready to catch any remaining images
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', scanImages);
+    }
+
+    // Font readiness tracking
+    if (document.fonts && document.fonts.ready) {
+        totalCount++;
+        document.fonts.ready.then(function() {
+            onAssetDone();
+        }).catch(function() {
+            onAssetDone();
+        });
+    }
+
+    // Smooth RAF Interpolator for Counter (Eases smoothly towards targetPercent)
+    function tickProgress() {
+        if (isEnded) return;
+
+        // If target is ahead, increment with smooth interpolation
+        if (currentPercent < targetPercent) {
+            var step = Math.max(1, Math.ceil((targetPercent - currentPercent) * 0.12));
+            currentPercent = Math.min(targetPercent, currentPercent + step);
+
+            if (counterEl) counterEl.textContent = currentPercent + '%';
+            if (progressBar) progressBar.style.width = currentPercent + '%';
+        }
+
+        // When all tracked assets are resolved and visual counter reached 100%
+        if (currentPercent >= 100 && loadedCount >= totalCount) {
+            completePreloader();
+            return;
+        }
+
+        requestAnimationFrame(tickProgress);
+    }
+
+    requestAnimationFrame(tickProgress);
 })();
 </script>
