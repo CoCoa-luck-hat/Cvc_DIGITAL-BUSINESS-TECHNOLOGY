@@ -170,7 +170,10 @@
                 figure.setAttribute("data-building", item.building);
 
                 figure.innerHTML = `
-                    <img src="${item.src}" alt="${item.caption}" class="maj-tile-img" loading="${i < 6 ? 'eager' : 'lazy'}">
+                    <div class="img-loader-wrapper" style="aspect-ratio: 4/3;">
+                        <div class="img-shimmer-wave" aria-hidden="true"></div>
+                        <img src="${item.src}" alt="${item.caption}" class="img-loader-target maj-tile-img" loading="${i < 6 ? 'eager' : 'lazy'}" onload="this.parentElement && this.parentElement.classList.add('img-loaded')" onerror="this.parentElement && this.parentElement.classList.add('img-error')">
+                    </div>
                     <div class="maj-hover-scrim">
                         <div class="maj-hover-top-badges">
                             <span class="maj-badge-building-tag"><i class="fas fa-map-marker-alt"></i> ${item.buildingLabel}</span>

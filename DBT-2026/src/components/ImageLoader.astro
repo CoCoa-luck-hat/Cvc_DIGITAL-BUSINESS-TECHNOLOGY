@@ -1,0 +1,164 @@
+---
+interface Props {
+    src: string;
+    alt: string;
+    width?: number | string;
+    height?: number | string;
+    class?: string;
+    imgClass?: string;
+    loading?: 'lazy' | 'eager';
+    decoding?: 'async' | 'sync' | 'auto';
+    aspectRatio?: string;
+    draggable?: boolean;
+    id?: string;
+    style?: string;
+    objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
+}
+
+const {
+    src,
+    alt,
+    width,
+    height,
+    class: containerClass = '',
+    imgClass = '',
+    loading = 'lazy',
+    decoding = 'async',
+    aspectRatio,
+    draggable = false,
+    id,
+    style = '',
+    objectFit = 'cover',
+    ...rest
+} = Astro.props;
+
+// Calculate aspect-ratio if not explicitly provided but width & height are provided
+const computedAspect = aspectRatio 
+    ? aspectRatio 
+    : (width && height && !isNaN(Number(width)) && !isNaN(Number(height)))
+        ? `${width}/${height}`
+        : undefined;
+
+const containerStyle = [
+    computedAspect ? `aspect-ratio: ${computedAspect};` : '',
+    objectFit !== 'cover' ? `--img-fit: ${objectFit};` : '',
+    style
+].filter(Boolean).join(' ');
+---
+
+<div class={`img-loader-wrapper ${containerClass}`} style={containerStyle} id={id}>
+    <div class="img-shimmer-wave" aria-hidden="true"></div>
+    <img
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        loading={loading}
+        decoding={decoding}
+        draggable={draggable ? 'true' : 'false'}
+        class={`img-loader-target ${imgClass}`}
+        onload="this.parentElement && this.parentElement.classList.add('img-loaded')"
+        onerror="this.parentElement && this.parentElement.classList.add('img-error')"
+        {...rest}
+    />
+</div>
+
+<script>
+    function markLoadedImages() {
+        document.querySelectorAll('.img-loader-wrapper:not(.img-loaded)').forEach((wrapper) => {
+            const img = wrapper.querySelector('img');
+            if (img && img.complete && img.naturalWidth !== 0) {
+                wrapper.classList.add('img-loaded');
+            }
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', markLoadedImages);
+    } else {
+        markLoadedImages();
+    }
+    window.addEventListener('load', markLoadedImages);
+
+    // Global observer for dynamic elements or tab switches
+    if (typeof MutationObserver !== 'undefined' && document.body) {
+        const observer = new MutationObserver(() => markLoadedImages());
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
+</script>
+
+<style>
+.img-loader-wrapper {
+    position: relative;
+    overflow: hidden;
+    background-color: #0b0d14;
+    display: block;
+    width: 100%;
+    border-radius: inherit;
+    --img-fit: cover;
+}
+
+.img-shimmer-wave {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+        90deg,
+        rgba(19, 20, 31, 0.95) 0%,
+        rgba(36, 24, 54, 0.85) 30%,
+        rgba(168, 85, 247, 0.22) 50%,
+        rgba(36, 24, 54, 0.85) 70%,
+        rgba(19, 20, 31, 0.95) 100%
+    );
+    background-size: 250% 100%;
+    animation: imgShimmerAnim 1.6s ease-in-out infinite;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    border-radius: inherit;
+}
+
+@keyframes imgShimmerAnim {
+    0% { background-position: 200% 0; }
+    100% { background-position: -50% 0; }
+}
+
+.img-loader-target {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: var(--img-fit, cover);
+    opacity: 0;
+    transform: scale(0.98);
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    z-index: 2;
+    border-radius: inherit;
+}
+
+:global(.img-loader-wrapper.img-loaded) .img-shimmer-wave {
+    opacity: 0;
+    pointer-events: none;
+}
+
+:global(.img-loader-wrapper.img-loaded) .img-loader-target {
+    opacity: 1;
+    transform: scale(1);
+}
+
+:global(.img-loader-wrapper.img-error) .img-shimmer-wave {
+    opacity: 0;
+}
+
+:global(.img-loader-wrapper.img-error)::after {
+    content: "✕ โหลดภาพไม่สำเร็จ";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    z-index: 1;
+    background: rgba(15, 23, 42, 0.8);
+}
+</style>
