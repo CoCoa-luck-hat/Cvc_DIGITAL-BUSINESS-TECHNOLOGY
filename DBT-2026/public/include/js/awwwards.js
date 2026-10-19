@@ -62,7 +62,7 @@ function createInteractiveElements() {
         centerBox.className = "cinematic-blinds-center";
         centerBox.innerHTML = `
             <div class="cinematic-blinds-logo">
-                <img src="/02_design/DBTLOGO.webp" alt="DBT Logo">
+                <img src="/02_design/Logo-it-04.webp" alt="IT Logo">
             </div>
         `;
         wrapper.appendChild(centerBox);
@@ -605,7 +605,7 @@ function triggerHeroReveal() {
             if (playPromise !== undefined) {
                 playPromise.catch(() => {
                     const touchWake = () => {
-                        heroVideo.play().catch(() => {});
+                        heroVideo.play().catch(() => { });
                         window.removeEventListener("touchstart", touchWake);
                         window.removeEventListener("pointerdown", touchWake);
                     };
@@ -1079,110 +1079,110 @@ function init3DCardStacking() {
             const vh = window.innerHeight;
             const cardH = cards[0] && cards[0].offsetHeight ? cards[0].offsetHeight : 450;
             const minOffset = isMobile ? 65 : 110;
-                return Math.max(minOffset, Math.round((vh - cardH) / 2));
-            };
+            return Math.max(minOffset, Math.round((vh - cardH) / 2));
+        };
 
-            // Set explicit initial visual states for all stacked cards
-            gsap.set(cards[0], { autoAlpha: 1, scale: 1, y: 0, pointerEvents: "auto", transformOrigin: "center center" });
-            for (let i = 1; i < cards.length; i++) {
-                gsap.set(cards[i], { autoAlpha: 0, scale: 0.94, y: 50, pointerEvents: "none", transformOrigin: "center center" });
-            }
+        // Set explicit initial visual states for all stacked cards
+        gsap.set(cards[0], { autoAlpha: 1, scale: 1, y: 0, pointerEvents: "auto", transformOrigin: "center center" });
+        for (let i = 1; i < cards.length; i++) {
+            gsap.set(cards[i], { autoAlpha: 0, scale: 0.94, y: 50, pointerEvents: "none", transformOrigin: "center center" });
+        }
 
-            const numCards = cards.length;
-            const scrollDistance = isMobile ? `+=${numCards * 70}%` : `+=${numCards * 85}%`;
-            let activeCardIdx = 0;
+        const numCards = cards.length;
+        const scrollDistance = isMobile ? `+=${numCards * 70}%` : `+=${numCards * 85}%`;
+        let activeCardIdx = 0;
 
-            const transitionToCard = (targetIdx, direction) => {
-                if (targetIdx === activeCardIdx) return;
-                const prevIdx = activeCardIdx;
-                activeCardIdx = targetIdx;
+        const transitionToCard = (targetIdx, direction) => {
+            if (targetIdx === activeCardIdx) return;
+            const prevIdx = activeCardIdx;
+            activeCardIdx = targetIdx;
 
-                cards.forEach((card, idx) => {
-                    if (idx === targetIdx) {
-                        // Entrance Animation
-                        if (direction > 0) {
-                            // Forward entrance: Elastic spring-in from bottom
-                            gsap.fromTo(card,
-                                { y: 50, scale: 0.94, autoAlpha: 0 },
-                                {
-                                    y: 0,
-                                    scale: 1,
-                                    autoAlpha: 1,
-                                    pointerEvents: "auto",
-                                    duration: 0.75,
-                                    ease: "elastic.out(1, 0.75)",
-                                    overwrite: "auto"
-                                }
-                            );
-                        } else {
-                            // Reverse entrance: Smooth glide back into active focus
-                            gsap.to(card, {
+            cards.forEach((card, idx) => {
+                if (idx === targetIdx) {
+                    // Entrance Animation
+                    if (direction > 0) {
+                        // Forward entrance: Elastic spring-in from bottom
+                        gsap.fromTo(card,
+                            { y: 50, scale: 0.94, autoAlpha: 0 },
+                            {
                                 y: 0,
                                 scale: 1,
                                 autoAlpha: 1,
                                 pointerEvents: "auto",
-                                duration: 0.4,
-                                ease: "power2.out",
+                                duration: 0.75,
+                                ease: "elastic.out(1, 0.75)",
                                 overwrite: "auto"
-                            });
-                        }
-                    } else if (idx === prevIdx) {
-                        // Exit Animation
-                        if (direction > 0) {
-                            // Forward exit: Float up and fade out
-                            gsap.to(card, {
-                                y: -30,
-                                scale: 0.92,
-                                autoAlpha: 0,
-                                pointerEvents: "none",
-                                duration: 0.35,
-                                ease: "power2.inOut",
-                                overwrite: "auto"
-                            });
-                        } else {
-                            // Reverse exit: Drop down and fade out
-                            gsap.to(card, {
-                                y: 40,
-                                scale: 0.94,
-                                autoAlpha: 0,
-                                pointerEvents: "none",
-                                duration: 0.3,
-                                ease: "power2.inOut",
-                                overwrite: "auto"
-                            });
-                        }
+                            }
+                        );
                     } else {
-                        // Other inactive cards
-                        gsap.set(card, {
-                            autoAlpha: 0,
-                            pointerEvents: "none",
-                            y: idx > targetIdx ? 50 : -30,
-                            scale: 0.94
+                        // Reverse entrance: Smooth glide back into active focus
+                        gsap.to(card, {
+                            y: 0,
+                            scale: 1,
+                            autoAlpha: 1,
+                            pointerEvents: "auto",
+                            duration: 0.4,
+                            ease: "power2.out",
+                            overwrite: "auto"
                         });
                     }
-                });
-            };
-
-            ScrollTrigger.create({
-                trigger: wrapper,
-                start: () => `top ${getTopOffset()}px`,
-                end: scrollDistance,
-                pin: true,
-                anticipatePin: 1,
-                fastScrollEnd: false,
-                preventOverlaps: false,
-                invalidateOnRefresh: true,
-                onUpdate: (self) => {
-                    // Compute threshold-based active card index
-                    const rawProgress = self.progress;
-                    const computedIdx = Math.min(numCards - 1, Math.max(0, Math.floor(rawProgress * numCards)));
-
-                    if (computedIdx !== activeCardIdx) {
-                        transitionToCard(computedIdx, self.direction);
+                } else if (idx === prevIdx) {
+                    // Exit Animation
+                    if (direction > 0) {
+                        // Forward exit: Float up and fade out
+                        gsap.to(card, {
+                            y: -30,
+                            scale: 0.92,
+                            autoAlpha: 0,
+                            pointerEvents: "none",
+                            duration: 0.35,
+                            ease: "power2.inOut",
+                            overwrite: "auto"
+                        });
+                    } else {
+                        // Reverse exit: Drop down and fade out
+                        gsap.to(card, {
+                            y: 40,
+                            scale: 0.94,
+                            autoAlpha: 0,
+                            pointerEvents: "none",
+                            duration: 0.3,
+                            ease: "power2.inOut",
+                            overwrite: "auto"
+                        });
                     }
+                } else {
+                    // Other inactive cards
+                    gsap.set(card, {
+                        autoAlpha: 0,
+                        pointerEvents: "none",
+                        y: idx > targetIdx ? 50 : -30,
+                        scale: 0.94
+                    });
                 }
             });
-        }
+        };
+
+        ScrollTrigger.create({
+            trigger: wrapper,
+            start: () => `top ${getTopOffset()}px`,
+            end: scrollDistance,
+            pin: true,
+            anticipatePin: 1,
+            fastScrollEnd: false,
+            preventOverlaps: false,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+                // Compute threshold-based active card index
+                const rawProgress = self.progress;
+                const computedIdx = Math.min(numCards - 1, Math.max(0, Math.floor(rawProgress * numCards)));
+
+                if (computedIdx !== activeCardIdx) {
+                    transitionToCard(computedIdx, self.direction);
+                }
+            }
+        });
+    }
 }
 
 /**
@@ -2470,7 +2470,7 @@ if (document.readyState === 'loading') {
 }
 
 // Dynamic ScrollTrigger Recalculation for Slow Network Image Loading
-(function() {
+(function () {
     let refreshTimeout = null;
     const scheduleRefresh = () => {
         if (typeof ScrollTrigger === 'undefined') return;
@@ -2478,7 +2478,7 @@ if (document.readyState === 'loading') {
         refreshTimeout = setTimeout(() => {
             try {
                 ScrollTrigger.refresh();
-            } catch (e) {}
+            } catch (e) { }
         }, 180);
     };
 
