@@ -317,6 +317,21 @@ function initGalleryHorizontal() {
             gsap.set(track, { clearProps: "all" });
             gsap.set(sticky, { clearProps: "all" });
         }
+        const rulerItems = document.querySelectorAll(".ruler-item");
+        if (rulerItems.length) {
+            const updateMobileRuler = () => {
+                const maxScroll = track.scrollWidth - track.clientWidth;
+                if (maxScroll <= 0) return;
+                const progress = Math.min(1, Math.max(0, track.scrollLeft / maxScroll));
+                const activeIndex = Math.min(Math.floor(progress * rulerItems.length), rulerItems.length - 1);
+                rulerItems.forEach((item, idx) => {
+                    item.classList.toggle("active", idx === activeIndex);
+                });
+            };
+            track.removeEventListener("scroll", track.__rulerScrollHandler);
+            track.__rulerScrollHandler = updateMobileRuler;
+            track.addEventListener("scroll", updateMobileRuler, { passive: true });
+        }
         return;
     }
 

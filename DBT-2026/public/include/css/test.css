@@ -2213,7 +2213,8 @@ input[type="submit"],
     scroll-snap-type: x mandatory !important;
     scroll-padding: 0 1.25rem !important;
     -webkit-overflow-scrolling: touch !important;
-    touch-action: pan-x pan-y !important;
+    touch-action: pan-x !important;
+    overscroll-behavior-x: contain !important;
     scrollbar-width: none !important;
     -ms-overflow-style: none !important;
     transform: none !important;

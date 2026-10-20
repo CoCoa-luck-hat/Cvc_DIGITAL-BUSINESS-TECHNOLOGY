@@ -590,15 +590,27 @@
 
                 // Show floating back button with ultra high z-index
                 btnBackShowcase.style.display = "inline-flex";
-                morphTl.fromTo(btnBackShowcase, {
-                    opacity: 0,
-                    scale: 0.9
-                }, {
-                    opacity: 1,
-                    scale: 1,
-                    duration: 0.4,
-                    ease: "back.out(1.4)"
-                }, 0.15);
+                if (isMobile) {
+                    morphTl.fromTo(btnBackShowcase, {
+                        opacity: 0,
+                        y: 15
+                    }, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.35,
+                        ease: "power2.out"
+                    }, 0.15);
+                } else {
+                    morphTl.fromTo(btnBackShowcase, {
+                        opacity: 0,
+                        scale: 0.9
+                    }, {
+                        opacity: 1,
+                        scale: 1,
+                        duration: 0.4,
+                        ease: "back.out(1.4)"
+                    }, 0.15);
+                }
 
                 // Animate In Right Editorial Bio Panel directly on canvas
                 bioPanel.style.display = "flex";
@@ -665,17 +677,26 @@
                     onComplete: () => {
                         bioPanel.style.display = "none";
                         btnBackShowcase.style.display = "none";
+                        gsap.set([btnBackShowcase, bioPanel], { clearProps: "all" });
                         isBioMode = false;
                         startAutoCycle();
                     }
                 });
 
                 // 1. Fade Out Bio Panel & Back Button
-                revTl.to([bioPanel, btnBackShowcase], {
+                revTl.to(bioPanel, {
                     opacity: 0,
                     x: isMobile ? 0 : 30,
                     y: isMobile ? 18 : 0,
                     duration: 0.22,
+                    ease: "power2.in"
+                }, 0);
+
+                revTl.to(btnBackShowcase, {
+                    opacity: 0,
+                    x: isMobile ? 0 : 20,
+                    y: isMobile ? 12 : 0,
+                    duration: 0.2,
                     ease: "power2.in"
                 }, 0);
 
