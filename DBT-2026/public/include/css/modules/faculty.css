@@ -265,6 +265,91 @@
     will-change: transform;
 }
 
+/* Sleek Portrait Capsule Skeleton Loader */
+.fp-portrait-skeleton {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    max-width: 82%;
+    height: 75%;
+    border-radius: 48px 48px 20px 20px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(241, 245, 249, 0.95) 100%);
+    border: 1.5px solid rgba(226, 232, 240, 0.9);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    overflow: hidden;
+    z-index: 4;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.28s ease, visibility 0.28s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 16px 36px -10px rgba(95, 45, 140, 0.1);
+}
+
+.fp-portrait-skeleton.is-loading {
+    opacity: 1;
+    visibility: visible;
+    z-index: 6;
+}
+
+/* Shimmer Wave Light Beam */
+.fp-skeleton-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(95, 45, 140, 0.08) 35%,
+        rgba(139, 92, 246, 0.18) 50%,
+        rgba(95, 45, 140, 0.08) 65%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: translateX(-100%);
+    animation: fpShimmerSweep 1.6s infinite ease-in-out;
+}
+
+@keyframes fpShimmerSweep {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.fp-skeleton-icon {
+    position: relative;
+    z-index: 2;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(95, 45, 140, 0.08);
+    color: var(--fp-crimson);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 4px 15px rgba(95, 45, 140, 0.12);
+    animation: fpPulseIcon 2s infinite ease-in-out;
+}
+
+@keyframes fpPulseIcon {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.08);
+        opacity: 1;
+    }
+}
+
 .fp-pure-cutout-img {
     height: clamp(580px, 86vh, 880px);
     width: auto;
@@ -819,6 +904,13 @@
         z-index: 5;
     }
 
+    .fp-portrait-skeleton {
+        width: 220px;
+        max-width: 68vw;
+        height: 85%;
+        border-radius: 36px 36px 16px 16px;
+    }
+
     .fp-pure-cutout-img {
         height: 100%;
         min-height: 270px;
@@ -1158,6 +1250,12 @@
             min-height: 240px !important;
             max-height: clamp(240px, 48vh, 360px) !important;
             transform: scale(1.05) !important;
+        }
+        .fp-portrait-skeleton {
+            width: 180px;
+            max-width: 60vw;
+            height: 88%;
+            border-radius: 30px 30px 14px 14px;
         }
         .fp-skills-container {
             gap: 3px !important;

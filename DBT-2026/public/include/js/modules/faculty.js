@@ -154,6 +154,7 @@
         let activeIdx = 0;
         let isTransitioning = false;
         let isBioMode = false;
+        let currentLoadToken = 0;
 
         // Clear previous timer
         if (window.__fpAutoTimer) {
@@ -168,6 +169,7 @@
         const roleText = document.getElementById("fp-role-text");
         const mainPortrait = document.getElementById("fp-main-portrait");
         const portraitBox = document.getElementById("fp-portrait-box");
+        const portraitSkeleton = document.getElementById("fp-portrait-skeleton");
         const skillsBox = document.getElementById("fp-skills-box");
         const btnYt = document.getElementById("fp-btn-yt");
         const thumbButtons = document.querySelectorAll(".fp-thumb-item-btn");
@@ -175,6 +177,18 @@
         const leftFlank = document.getElementById("fp-left-flank");
         const rightFlank = document.getElementById("fp-right-flank");
         const bottomRail = document.getElementById("fp-bottom-rail");
+
+        // Preload all teacher cutout portraits into memory for instant transitions
+        const imageCache = new Map();
+        if (facultyDb && facultyDb.length) {
+            facultyDb.forEach((item) => {
+                if (item.img) {
+                    const img = new Image();
+                    img.src = item.img;
+                    imageCache.set(item.img, img);
+                }
+            });
+        }
 
         // Editorial Bio Elements
         const bioPanel = document.getElementById("fp-bio-detail-panel");
@@ -190,7 +204,7 @@
 
         if (!stageContainer || !mainPortrait) return;
 
-        // Reset to clean initial state (Teacher 0 - ครูเหน่ง)
+        // Reset to clean initial state (Teacher 0 - ครูอ๊อด)
         isBioMode = false;
         activeIdx = 0;
         isTransitioning = false;
@@ -199,6 +213,7 @@
             gsap.killTweensOf([leftFlank, rightFlank, bottomRail, portraitBox, backdropName, mainPortrait]);
         }
 
+        if (portraitSkeleton) portraitSkeleton.classList.remove("is-loading");
         if (bioPanel) bioPanel.style.display = "none";
         if (btnBackShowcase) btnBackShowcase.style.display = "none";
         if (leftFlank) {
@@ -235,6 +250,7 @@
 
             activeIdx = nextIdx;
             const currentData = facultyDb[activeIdx];
+            const thisToken = ++currentLoadToken;
 
             // If manually switched by user, restart auto-timer to give full 6 seconds
             if (!isAuto) {
@@ -287,7 +303,6 @@
                     nicknameText.textContent = currentData.nick;
                     fullnameText.textContent = currentData.name;
                     roleText.textContent = currentData.role;
-                    mainPortrait.src = currentData.img;
 
                     // Skills
                     skillsBox.innerHTML = currentData.skills.slice(0, 4).map(s => `<span class="fp-skill-chip">${s}</span>`).join('');
@@ -300,10 +315,51 @@
                         btnYt.style.display = "none";
                     }
 
-                    // Set enter start coordinates
-                    gsap.set(mainPortrait, { x: 70 * direction, opacity: 0, scale: 0.95 });
+                    // Set enter start coordinates for backdrop & flanks
                     gsap.set(backdropName, { x: 100 * direction, opacity: 0 });
                     gsap.set([leftFlank, rightFlank], { y: 20 * direction, opacity: 0 });
+
+                    // Check image load status
+                    const targetSrc = currentData.img;
+                    const cached = imageCache.get(targetSrc);
+                    const isReady = (cached && cached.complete && cached.naturalWidth > 0) || 
+                                    (mainPortrait.src.endsWith(targetSrc) && mainPortrait.complete && mainPortrait.naturalWidth > 0);
+
+                    if (isReady) {
+                        if (portraitSkeleton) portraitSkeleton.classList.remove("is-loading");
+                        mainPortrait.src = targetSrc;
+                        gsap.set(mainPortrait, { x: 70 * direction, opacity: 0, scale: 0.95 });
+                        gsap.to(mainPortrait, {
+                            x: 0,
+                            opacity: 1,
+                            scale: 1,
+                            duration: 0.5,
+                            ease: "power3.out"
+                        });
+                    } else {
+                        // Image is still downloading (slow network or cold load)
+                        // Trigger Skeleton Shimmer Immediately!
+                        if (portraitSkeleton) portraitSkeleton.classList.add("is-loading");
+                        gsap.set(mainPortrait, { opacity: 0 });
+
+                        const loader = new Image();
+                        loader.src = targetSrc;
+                        loader.onload = () => {
+                            if (thisToken !== currentLoadToken) return;
+                            mainPortrait.src = targetSrc;
+                            if (portraitSkeleton) portraitSkeleton.classList.remove("is-loading");
+                            gsap.fromTo(mainPortrait, 
+                                { x: 35 * direction, opacity: 0, scale: 0.96 },
+                                { x: 0, opacity: 1, scale: 1, duration: 0.45, ease: "power2.out" }
+                            );
+                        };
+                        loader.onerror = () => {
+                            if (thisToken !== currentLoadToken) return;
+                            if (portraitSkeleton) portraitSkeleton.classList.remove("is-loading");
+                            mainPortrait.src = targetSrc;
+                            gsap.to(mainPortrait, { opacity: 1, duration: 0.3 });
+                        };
+                    }
                 });
 
                 // Slide In Phase (New elements with parallax depth)
@@ -313,14 +369,6 @@
                     duration: 0.55,
                     ease: "power2.out"
                 }, 0.25);
-
-                tl.to(mainPortrait, {
-                    x: 0,
-                    opacity: 1,
-                    scale: 1,
-                    duration: 0.5,
-                    ease: "power3.out"
-                }, 0.28);
 
                 tl.to([leftFlank, rightFlank], {
                     y: 0,
@@ -332,6 +380,7 @@
 
             } else {
                 // Fallback for non-GSAP
+                if (portraitSkeleton) portraitSkeleton.classList.remove("is-loading");
                 mainPortrait.src = currentData.img;
                 backdropName.textContent = currentData.backdrop;
                 nicknameText.textContent = currentData.nick;
